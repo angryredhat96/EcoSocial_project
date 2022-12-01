@@ -10,9 +10,6 @@ export default function LKPage() {
     <Card sx={{ maxWidth: 345, marginTop: '15px', position: 'absolute', top: '35%', left: '40%' }} className='container'>
       <CardActionArea>
         <div className= 'row'>
-        <Button onClick={() => console.log('changePhoto')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
-          Изменить
-        </Button>
         <CardMedia
           component="img"
           height="140"
@@ -21,6 +18,9 @@ export default function LKPage() {
           alt="avatar"
           style={{borderRadius: '50%'}}
         />
+         <Button onClick={() => console.log('changePhoto')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
+          Изменить
+        </Button>
         </div>
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
