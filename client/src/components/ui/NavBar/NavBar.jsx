@@ -3,6 +3,8 @@ import {
   AppBar, Box, Toolbar,
 } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from '../../../redux/actions/userActions';
 
 const linkStyle = {
   textDecoration: 'none',
@@ -12,6 +14,7 @@ const linkStyle = {
 };
 
 export default function NavBar() {
+  const dispatch = useDispatch();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: '#689f38' }}>
@@ -34,7 +37,16 @@ export default function NavBar() {
             <NavLink to="/lk" style={linkStyle}>LK</NavLink>
           </Box>
           <Box ml={20}>
-            <NavLink to="#" style={linkStyle}>LogOut</NavLink>
+            <NavLink
+              to="/logout"
+              onClick={() => {
+                dispatch(logoutUser());
+              }}
+              style={linkStyle}
+            >
+              LogOut
+
+            </NavLink>
           </Box>
           {/* </>
         )} */}

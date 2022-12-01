@@ -5,7 +5,7 @@ const { User } = require('../db/models');
 const router = express.Router();
 
 router.post('/reg', async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password } = req.body.inputs;
 
   if (!name) return res.status(400).json({ message: 'Введите имя!' });
   if (!email) return res.status(400).json({ message: 'Введите почту!' });
@@ -27,7 +27,8 @@ router.post('/reg', async (req, res) => {
   }
 });
 router.post('/log', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password } = req.body.inputs;
+  console.log(email);
 
   if (!email) return res.status(400).json({ message: 'Введите почту!' });
   if (!password) return res.status(400).json({ message: 'Введите пароль!' });

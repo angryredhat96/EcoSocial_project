@@ -5,7 +5,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 export default function MainPage() {
-    const [newInput, setNewInput] = useState('');
+  const [newInput, setNewInput] = useState('');
   return (
     <>
       <Box
@@ -17,7 +17,7 @@ export default function MainPage() {
         noValidate
         autoComplete="off"
       >
-        <div className='row'>
+        <div className="row">
           <TextField
             required
             id="outlined-required"
@@ -27,14 +27,14 @@ export default function MainPage() {
             value={newInput}
             onChange={(e) => setNewInput(e.target.value)}
           />
-           <Button onClick={() => console.log('add')} variant="contained" component={Link} to={`/location/:id`} sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px', marginTop: '18px' }}>
-          Добавить место
-        </Button>
+          <Button onClick={() => console.log('add')} variant="contained" component={Link} to="/location/:id" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px', marginTop: '18px' }}>
+            Добавить место
+          </Button>
         </div>
       </Box>
       <div>
         Карта
       </div>
     </>
-  )
+  );
 }

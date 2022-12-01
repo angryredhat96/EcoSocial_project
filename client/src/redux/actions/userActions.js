@@ -9,12 +9,15 @@ export const setEmpty = () => ({ type: SET_EMPTY_USER });
 
 export const regUser = (inputs) => (dispatch) => {
   axios.post('/auth/reg', { inputs })
-    .then((res) => dispatch(setAuth(res.data)))
+    .then((res) => {
+      console.log(res.data);
+      dispatch(setAuth(res.data));
+    })
     .catch((err) => dispatch({ type: REG_FAILED, payload: err.response.data.message }));
 };
 
 export const loginUser = (inputs) => (dispatch) => {
-  axios.post('/auth/login', { inputs })
+  axios.post('/auth/log', { inputs })
     .then((res) => dispatch(setAuth(res.data)))
     .catch((err) => dispatch({ type: LOG_FAILED, payload: err.response.data.message }));
 };
