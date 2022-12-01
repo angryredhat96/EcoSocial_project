@@ -22,25 +22,24 @@ export default function NavBar() {
           {/* {!user ? (
             <> */}
           <Box ml={20}>
-            <NavLink to="#" style={linkStyle}>Reg</NavLink>
+            <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
           </Box>
           <Box ml={20}>
-          <NavLink to="#" style={linkStyle}>Log</NavLink>
-        </Box>
-        {/* </>
+            <NavLink to="/log" style={linkStyle}>Log</NavLink>
+          </Box>
+          {/* </>
         ) : (
             <> */}
-            <Box ml={20}>
+          <Box ml={20}>
             <NavLink to="#" style={linkStyle}>LK</NavLink>
           </Box>
           <Box ml={20}>
-          <NavLink to="#" style={linkStyle}>LogOut</NavLink>
-        </Box>
-        {/* </>
+            <NavLink to="#" style={linkStyle}>LogOut</NavLink>
+          </Box>
+          {/* </>
         )} */}
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
-
