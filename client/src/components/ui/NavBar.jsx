@@ -14,7 +14,7 @@ const linkStyle = {
 export default function NavBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{ backgroundColor: 'orange' }}>
+      <AppBar position="static" style={{ backgroundColor: '#689f38' }}>
         <Toolbar>
           <Box ml={20}>
             <NavLink to="/" style={linkStyle}>Home</NavLink>
