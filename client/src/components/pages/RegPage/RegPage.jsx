@@ -38,21 +38,21 @@ export default function RegPage() {
             <TextField
               name="name"
               type="text"
-              id="standard-basic"
+              id="standard-basic1"
               label="Name"
               variant="standard"
             />
             <TextField
               name="email"
               type="email"
-              id="standard-basic"
+              id="standard-basic2"
               label="Email"
               variant="standard"
             />
             <TextField
               name="password"
               type="password"
-              id="standard-basic"
+              id="standard-basic3"
               label="Password"
               variant="standard"
             />
