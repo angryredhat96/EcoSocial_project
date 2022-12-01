@@ -31,7 +31,7 @@ export default function NavBar() {
         ) : (
             <> */}
           <Box ml={20}>
-            <NavLink to="#" style={linkStyle}>LK</NavLink>
+            <NavLink to="/lk" style={linkStyle}>LK</NavLink>
           </Box>
           <Box ml={20}>
             <NavLink to="#" style={linkStyle}>LogOut</NavLink>
