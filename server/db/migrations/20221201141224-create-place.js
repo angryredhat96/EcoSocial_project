@@ -14,8 +14,11 @@ module.exports = {
       description: {
         type: Sequelize.TEXT,
       },
-      geo: {
-        type: Sequelize.TEXT,
+      latitude: {
+        type: Sequelize.FLOAT,
+      },
+      longitude: {
+        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,
