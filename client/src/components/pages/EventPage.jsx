@@ -7,8 +7,11 @@ import {
   CardActionArea, Button, Grid, CardActions,
   Container,
 } from '@mui/material';
+import { useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 
 export default function EventPage() {
+  const event = useSelector((store) => store.events)[0];
   return (
     <Container>
       <Card
@@ -19,22 +22,28 @@ export default function EventPage() {
       >
         <CardContent>
           <Typography gutterBottom variant="h4" style={{ color: '#689f38' }} component="div">
-            Название ивента
+            {event.title}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Описание ивента
+            {event.description}
+            s
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Дата ивента
+            {dayjs(event.date).format('DD.MM.YY')}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            ТГ линк
+            {event.tgLink}
+          </Typography>
+          <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
+            counter of Joiners
           </Typography>
         </CardContent>
         <CardActionArea>
-          <Button onClick={() => console.log('Join')} variant="contained" sx={{ backgroundColor: '#689f38', color: 'white' }} style={{ marginLeft: '230px', marginBottom: '18px' }}>
-            Иду
-          </Button>
+          <Container>
+            <Button onClick={() => console.log('join')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '10px', marginTop: '10px', marginBottom: '10px' }}>
+              Join
+            </Button>
+          </Container>
         </CardActionArea>
       </Card>
     </Container>
