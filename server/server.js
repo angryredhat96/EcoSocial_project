@@ -3,7 +3,9 @@ const morgan = require('morgan');
 const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
+const path = require('path');
 const authRouter = require('./routes/authRouter');
+const apiRouter = require('./routes/apiRouter');
 
 require('dotenv').config();
 
@@ -14,9 +16,11 @@ app.use(cors({
   credentials: true,
   origin: true,
 }));
+
 app.use(morgan('dev'));
-app.use(express.json());
+app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
+app.use('/public/lk', express.static(path.join(__dirname, 'public/lk/')));
 app.use(session({
   name: 'sid',
   secret: process.env.SESSION_SECRET ?? 'test',
@@ -30,5 +34,6 @@ app.use(session({
 }));
 
 app.use('/auth', authRouter);
+app.use('/api/v1', apiRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

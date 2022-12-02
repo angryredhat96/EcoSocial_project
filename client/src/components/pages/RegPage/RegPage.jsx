@@ -7,7 +7,7 @@ import { regUser } from '../../../redux/actions/userActions';
 
 export default function RegPage() {
   const dispatch = useDispatch();
-  const error = useSelector((store) => store.error);
+  const error = useSelector((store) => store.erroreg);
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
