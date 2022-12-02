@@ -9,6 +9,7 @@ import MainPage from './components/pages/MainPage/MainPage';
 import NavBar from './components/ui/NavBar/NavBar';
 import RegPage from './components/pages/RegPage/RegPage';
 import LogPage from './components/pages/LogPage/LogPage';
+import EditPage from './components/pages/EditPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/lk" element={<LKPage />} />
         <Route path="/location/:id" element={<LocationPage />} />
         <Route path="/event/:id" element={<EventPage />} />
+        <Route path="/event/:id/edit" element={<EditPage />} />
         <Route path="/new" element={<NewPage />} />
         <Route path="/reg" element={<RegPage />} />
         <Route path="/log" element={<LogPage />} />

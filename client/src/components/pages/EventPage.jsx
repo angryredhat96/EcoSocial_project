@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import { Container } from '@mui/system';
 import { useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 
 export default function EventPage() {
   const event = useSelector((store) => store.events)[0];
@@ -26,10 +27,13 @@ export default function EventPage() {
             {event.description}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            {event.date}
+            {dayjs(event.date).format('DD.MM.YY')}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
             {event.tgLink}
+          </Typography>
+          <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
+            counter of Joiners
           </Typography>
         </CardContent>
         <CardActionArea>

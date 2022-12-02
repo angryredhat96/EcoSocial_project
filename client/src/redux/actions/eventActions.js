@@ -1,10 +1,13 @@
 import axios from 'axios';
-import { ADD_EVENT, DELETE_EVENT, SET_EVENT, SET_EVENTS } from '../types';
+import {
+  ADD_EVENT, DELETE_EVENT, SET_EVENT, SET_EVENTS, UPDATE_EVENT,
+} from '../types';
 
 export const setEvents = (events) => ({ type: SET_EVENTS, payload: events });
 export const setEvent = (event) => ({ type: SET_EVENT, payload: event });
 export const addEvent = (newEvent) => ({ type: ADD_EVENT, payload: newEvent });
 export const deleteEvent = (eventId) => ({ type: DELETE_EVENT, payload: eventId });
+export const editEvent = (editedId) => ({ type: UPDATE_EVENT, payload: editedId });
 
 export const getEvents = () => (dispatch) => {
   axios.get('/events')
@@ -14,6 +17,7 @@ export const getEvents = () => (dispatch) => {
 
 export const submitEvent = (e, inputs, value) => (dispatch) => {
   e.preventDefault();
+  console.log('dispatching date', value);
   axios.post('/events', {
     title: inputs.title, description: inputs.description, tgLink: inputs.tgLink, date: value,
   })
@@ -25,4 +29,12 @@ export const asyncDelete = (id) => (dispatch) => {
   axios.delete(`/events/${id}`)
     .then(() => dispatch(deleteEvent(id)))
     .catch((err) => console.log('error in deleting Event', err));
+};
+
+export const asyncEdit = (id, inputs, value) => (dispatch) => {
+  axios.patch(`/events/${id}/edit`, {
+    title: inputs.title, description: inputs.description, tgLink: inputs.tgLink, date: value,
+  })
+    .then((res) => dispatch(editEvent(res.data)))
+    .catch((err) => console.log('error in editing Event', err));
 };

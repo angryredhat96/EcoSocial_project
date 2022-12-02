@@ -8,10 +8,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { submitEvent } from '../../redux/actions/eventActions';
 
-export default function NewPage() {
+export default function EditPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = React.useState({
@@ -21,7 +21,7 @@ export default function NewPage() {
   });
   // console.log(inputs);
   const [value, setValue] = React.useState(dayjs('2022-12-10T21:11:54'));
-  // console.log('val', value.format('DD-MM-YYYY'));
+//   console.log('val', value);
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -79,10 +79,12 @@ export default function NewPage() {
               navigate('/location/:id');
             }}
             variant="contained"
+            component={Link}
+            to="/"
             sx={{ backgroundColor: '#689f38', color: 'white' }}
             style={{ marginLeft: '125px', marginBottom: '18px' }}
           >
-            Создать
+            Изменить
           </Button>
         </CardActionArea>
       </Card>
