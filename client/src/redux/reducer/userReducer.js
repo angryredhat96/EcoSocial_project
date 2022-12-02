@@ -11,7 +11,6 @@ export default function userReducer(state = null, action) {
       return {};
     case LOGOUT:
       return {};
-
     default:
       return state;
   }
