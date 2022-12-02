@@ -5,6 +5,7 @@ const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const authRouter = require('./routes/authRouter');
 const eventsRouter = require('./routes/eventsRouter');
+const indexRouter = require('./routes/indexRouter');
 
 require('dotenv').config();
 
@@ -31,6 +32,7 @@ app.use(session({
 }));
 
 app.use('/auth', authRouter);
+app.use('/', indexRouter);
 
 app.use('/events', eventsRouter);
 

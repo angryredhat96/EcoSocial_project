@@ -11,3 +11,6 @@ export const SET_EVENT = 'SET_EVENT';
 export const ADD_EVENT = 'ADD_EVENT';
 export const DELETE_EVENT = 'DELETE_EVENT';
 export const UPDATE_EVENT = 'UPDATE_EVENT';
+// Метки на карте
+export const SET_PLACE = 'SET_PLACE';
+export const SET_ONE_PLACE = 'SET_ONE_PLACE';

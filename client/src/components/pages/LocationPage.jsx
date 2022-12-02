@@ -1,21 +1,30 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Link, useParams } from 'react-router-dom';
 import {
   CardActionArea, Button,
 } from '@mui/material';
 import { Container } from '@mui/system';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import EventCard from '../ui/EventCard';
 import { getEvents } from '../../redux/actions/eventActions';
+import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
 
 export default function LocationPage() {
   const dispatch = useDispatch();
+  const { id } = useParams();
+  console.log(id, 'id');
+  const selector = useSelector((store) => store.onePlace);
+  console.log('item', selector);
   const events = useSelector((store) => store.events);
-  React.useEffect(() => {
+
+  useEffect(() => {
+    dispatch(getOnePlaceThunk(id));
+  }, []);
+  useEffect(() => {
     dispatch(getEvents());
   }, []);
   return (
@@ -28,10 +37,10 @@ export default function LocationPage() {
       >
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
-            Название места
+            {selector.title}
           </Typography>
           <Typography gutterBottom variant="h6" component="div">
-            Описание места
+            {selector.description}
           </Typography>
         </CardContent>
         <CardActionArea>
