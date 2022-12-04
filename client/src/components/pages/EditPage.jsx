@@ -7,11 +7,15 @@ import { Container } from '@mui/system';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { submitEvent } from '../../redux/actions/eventActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import {
+  asyncEdit, getEvents, getOneEvent, submitEvent,
+} from '../../redux/actions/eventActions';
 
 export default function EditPage() {
+  const { id } = useParams();
+  const { event } = useSelector((store) => store.oneEvent);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = React.useState({
@@ -19,9 +23,19 @@ export default function EditPage() {
     description: '',
     tgLink: '',
   });
+
+  // React.useEffect(() => {
+  //   dispatch(getOneEvent(id));
+  // }, []);
+
+  React.useEffect(() => {
+    if (event) {
+      setInputs({ ...event });
+    }
+  }, [event]);
   // console.log(inputs);
   const [value, setValue] = React.useState(dayjs('2022-12-10T21:11:54'));
-//   console.log('val', value);
+  //   console.log('val', value);
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -43,7 +57,8 @@ export default function EditPage() {
             noValidate
             autoComplete="off"
             onSubmit={(e) => {
-              dispatch(submitEvent(e, inputs, value));
+              e.preventDefault();
+              dispatch(asyncEdit(inputs, value, id));
               setInputs({
                 title: '',
                 description: '',
@@ -70,7 +85,8 @@ export default function EditPage() {
         <CardActionArea>
           <Button
             onClick={(e) => {
-              dispatch(submitEvent(e, inputs, value));
+              e.preventDefault();
+              dispatch(asyncEdit(inputs, value, id));
               setInputs({
                 title: '',
                 description: '',
@@ -79,8 +95,6 @@ export default function EditPage() {
               navigate('/location/:id');
             }}
             variant="contained"
-            component={Link}
-            to="/"
             sx={{ backgroundColor: '#689f38', color: 'white' }}
             style={{ marginLeft: '125px', marginBottom: '18px' }}
           >

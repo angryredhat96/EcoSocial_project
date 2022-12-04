@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Button } from '@mui/material';
 
-export default function LKPage() {
+export default function ProfilePage() {
   return (
     <Card
       sx={{
