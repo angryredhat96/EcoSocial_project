@@ -13,6 +13,8 @@ import axios from 'axios';
 import EventCard from '../ui/EventCard';
 import { getEvents } from '../../redux/actions/eventActions';
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
+import { setPhotosThunk } from '../../redux/actions/photoActions';
+import Courusel from './Courusel';
 
 export default function LocationPage() {
   const dispatch = useDispatch();
@@ -23,6 +25,8 @@ export default function LocationPage() {
   const events = useSelector((store) => store.events);
   const [fileData, setFileData] = useState({ photos: null });
   const [photo, setPhoto] = useState([]);
+  const photoId = useSelector((store) => store.photos);
+  console.log(photoId, 'PHOOOOOOOOOOO');
 
   const changeHandler = (e) => {
     setFileData(e.target.files);
@@ -33,14 +37,14 @@ export default function LocationPage() {
     e.preventDefault();
     const data = new FormData(e.target);
     data.append('photos', fileData);
-    // console.log(data, 'UUUUUUU');
     await axios.post(`/api/photos/addphoto/${id}`, data)
-      .then((res) => setPhoto(JSON.parse(res.data?.image)));
+      .then((res) => setPhoto(res.data?.image));
   };
 
   console.log(photo, 'QQQQQQQQ');
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
+    dispatch(setPhotosThunk(id));
   }, []);
   useEffect(() => {
     dispatch(getEvents());
@@ -72,6 +76,7 @@ export default function LocationPage() {
                 Добавить
               </Button>
             </form>
+            {photoId && photoId?.map((el) => <Courusel ph={el} key={el.id} />)}
             <CardMedia
               component="img"
               height="140"

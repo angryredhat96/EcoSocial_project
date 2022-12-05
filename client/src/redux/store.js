@@ -5,6 +5,7 @@ import eventsReducer from './reducer/eventsReducer';
 import onePlaceReducer from './reducer/onePlaceReducer';
 import placeReducer from './reducer/placeReducer';
 import userReducer from './reducer/userReducer';
+import photoReducer from './reducer/photoReducer';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     events: eventsReducer,
     place: placeReducer,
     onePlace: onePlaceReducer,
+    photos: photoReducer,
   },
 });
 

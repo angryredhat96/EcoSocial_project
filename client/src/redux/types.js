@@ -15,3 +15,6 @@ export const UPDATE_EVENT = 'UPDATE_EVENT';
 // Метки на карте
 export const SET_PLACE = 'SET_PLACE';
 export const SET_ONE_PLACE = 'SET_ONE_PLACE';
+
+// PHOTO
+export const SET_PHOTOS_ID = 'SET_PHOTOS_ID';
