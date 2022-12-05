@@ -3,12 +3,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import {
-  CardActionArea, Button,
+  CardActionArea, Button, Grid,
 } from '@mui/material';
 import { Container } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
+import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import EventCard from '../ui/EventCard';
 import { getEvents } from '../../redux/actions/eventActions';
@@ -46,22 +47,35 @@ export default function LocationPage() {
     dispatch(getOnePlaceThunk(id));
     dispatch(setPhotosThunk(id));
   }, []);
+
   useEffect(() => {
     dispatch(getEvents());
   }, []);
+
   return (
-    <Container>
+    <Container
+      direction="column"
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
+    >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '15px', position: 'absolute', top: '10%', left: '40%',
+          maxWidth: 345,
+          marginTop: '35px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          direction: 'column',
         }}
-        className="container"
       >
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
             {selector.title}
           </Typography>
-          <Typography gutterBottom variant="h6" component="div">
+          <Typography gutterBottom variant="h7" component="div">
             {selector.description}
           </Typography>
         </CardContent>
@@ -79,26 +93,38 @@ export default function LocationPage() {
             {photoId && photoId?.map((el) => <Courusel ph={el} key={el.id} />)}
             <CardMedia
               component="img"
-              height="140"
+              height="250"
               width="140"
               image="https://vsegda-pomnim.com/uploads/posts/2022-04/1649124761_13-vsegda-pomnim-com-p-priroda-gor-foto-17.jpg"
               alt="avatar"
+              sx={{ objectFit: 'contain' }}
             />
           </div>
         </CardActionArea>
+        <NavLink to="#">
+          <AddIcon sx={{ color: 'black' }} />
+        </NavLink>
       </Card>
-      <Button onClick={() => console.log('addEvent')} variant="contained" component={Link} to="/new" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '400px', position: 'absolute', top: '50%' }}>
+      <Button
+        onClick={() => console.log('addEvent')}
+        variant="contained"
+        component={Link}
+        to={`/new/${id}`}
+        sx={{
+          backgroundColor: '#689f38', marginLeft: '20px', height: '30px', mt: '470px',
+        }}
+      >
         Добавить ивент
       </Button>
-      <Container>
+      <Grid container spacing={6} sx={{ mt: '30px' }}>
         {events?.map((el) => (
           <EventCard
             key={el.id}
-            id={el.id}
+            elId={el.id}
             event={el}
           />
         ))}
-      </Container>
+      </Grid>
     </Container>
   );
 }

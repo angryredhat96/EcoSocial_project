@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { SET_PLACE } from '../types';
+import { ADD_PLACE, SET_PLACE } from '../types';
 
 export const setPlace = (allPlaces) => ({ type: SET_PLACE, payload: allPlaces });
+export const addPlace = (newPlace) => ({ type: ADD_PLACE, payload: newPlace });
 
 export const getPlacesThunk = () => (dispatch) => {
   axios('/')
@@ -10,7 +11,8 @@ export const getPlacesThunk = () => (dispatch) => {
 };
 
 export const addPlaceThunk = (inputs) => (dispatch) => {
-  axios.post('/places', { inputs })
-    .then((res) => dispatch(setPlace(res.data)))
+  console.log('inputs', inputs);
+  axios.post('/places', inputs)
+    .then((res) => dispatch(addPlace(res.data)))
     .catch(console.log);
 };

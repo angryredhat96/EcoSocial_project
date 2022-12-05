@@ -15,10 +15,9 @@ export const getEvents = () => (dispatch) => {
     .catch((e) => console.log('error in getting Events', e));
 };
 
-export const submitEvent = (e, inputs, value) => (dispatch) => {
+export const submitEvent = (e, inputs, value, id) => (dispatch) => {
   e.preventDefault();
-  console.log('dispatching date', value);
-  axios.post('/events', {
+  axios.post(`/events/${id}`, {
     title: inputs.title, description: inputs.description, tgLink: inputs.tgLink, date: value,
   })
     .then((res) => dispatch(addEvent(res.data)))
@@ -31,9 +30,18 @@ export const asyncDelete = (id) => (dispatch) => {
     .catch((err) => console.log('error in deleting Event', err));
 };
 
-export const asyncEdit = (id, inputs, value) => (dispatch) => {
+export const getOneEvent = (id) => (dispatch) => {
+  axios.get(`/events/${id}`)
+    .then((res) => dispatch(setEvent(res.data)))
+    .catch((err) => console.log('error in deleting Event', err));
+};
+
+export const asyncEdit = (id, event, value) => (dispatch) => {
+  console.log({
+    title: event.title, description: event.description, tgLink: event.tgLink, date: value,
+  });
   axios.patch(`/events/${id}/edit`, {
-    title: inputs.title, description: inputs.description, tgLink: inputs.tgLink, date: value,
+    title: event.title, description: event.description, tgLink: event.tgLink, date: value,
   })
     .then((res) => dispatch(editEvent(res.data)))
     .catch((err) => console.log('error in editing Event', err));

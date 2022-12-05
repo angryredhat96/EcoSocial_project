@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Button } from '@mui/material';
+import { Container } from '@mui/system';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 
@@ -33,38 +34,49 @@ export default function LKPage() {
   if (!user || !avatar) return null;
   console.log(avatar, 'AVVVVVVVVV');
   return (
-    <Card
-      sx={{
-        maxWidth: 345, marginTop: '15px', position: 'absolute', top: '35%', left: '40%',
-      }}
-      className="container"
+    <Container style={{
+      color: 'orange',
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+    }}
     >
-      <CardActionArea>
-        <div className="row">
-          <CardMedia
-            component="img"
-            height="270"
-            width="100"
-            image={avatar ? `http://localhost:3001/${avatar.slice(7)}` : 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg'}
-            alt="avatar"
-            style={{ borderRadius: '50%' }}
-          />
+      <Card
+        sx={{
+          maxWidth: 345, marginTop: '55px',
+        }}
+        className="container"
+      >
+        <CardActionArea>
+          <div className="row">
+            <CardMedia
+              component="img"
+              height="270"
+              width="100"
+              image={avatar ? `http://localhost:3001/${avatar.slice(7)}` : 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg'}
+              alt="avatar"
+              style={{ borderRadius: '50%' }}
+            />
+            <Button onClick={() => console.log('changePhoto')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
+              Изменить
+            </Button>
+          </div>
           <form onSubmit={submitHandler} encType="multipart/form-data">
             <input type="file" name="avatar" onChange={changeAmg} />
             <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
               Изменить
             </Button>
           </form>
-        </div>
-        <CardContent>
-          <Typography gutterBottom variant="h4" component="div">
-            {user.name}
-          </Typography>
-          <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
-            Принял участие в N событиях
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
+          <CardContent>
+            <Typography gutterBottom variant="h4" component="div">
+              Имя юзера
+            </Typography>
+            <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
+              ☘️
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Container>
   );
 }

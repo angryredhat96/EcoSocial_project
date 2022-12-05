@@ -7,11 +7,15 @@ import { Container } from '@mui/system';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { submitEvent } from '../../redux/actions/eventActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import {
+  asyncEdit, getEvents, getOneEvent, submitEvent,
+} from '../../redux/actions/eventActions';
 
 export default function EditPage() {
+  const { id } = useParams();
+  const { event } = useSelector((store) => store.oneEvent);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = React.useState({
@@ -19,18 +23,46 @@ export default function EditPage() {
     description: '',
     tgLink: '',
   });
+
+  React.useEffect(() => {
+    dispatch(getOneEvent(id));
+  }, []);
+
+  React.useEffect(() => {
+    if (event) {
+      setInputs({ ...event });
+    }
+  }, [event]);
   // console.log(inputs);
   const [value, setValue] = React.useState(dayjs('2022-12-10T21:11:54'));
-//   console.log('val', value);
+  //   console.log('val', value);
   const handleChange = (newValue) => {
     setValue(newValue);
   };
   const changeHandler = (e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const clickHandler = (e) => {
+    e.preventDefault();
+    console.log('boje', inputs, value, id);
+    dispatch(asyncEdit(inputs, value, id));
+    setInputs({
+      title: '',
+      description: '',
+      tgLink: '',
+    });
+    navigate('/');
+  };
+
   return (
-    <Container>
+    <Container sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+    }}
+    >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '15px', justifyContent: 'center', position: 'absolute', top: '10%', left: '40%',
+          maxWidth: 345, marginTop: '55px',
         }}
         className="container"
       >
@@ -42,14 +74,16 @@ export default function EditPage() {
             }}
             noValidate
             autoComplete="off"
-            onSubmit={(e) => {
-              dispatch(submitEvent(e, inputs, value));
-              setInputs({
-                title: '',
-                description: '',
-                tgLink: '',
-              });
-            }}
+            // onSubmit={(e) => {
+            //   e.preventDefault();
+            //   console.log(inputs, value, id);
+            //   dispatch(asyncEdit(inputs, value, id));
+            //   setInputs({
+            //     title: '',
+            //     description: '',
+            //     tgLink: '',
+            //   });
+            // }}
           >
             <TextField value={inputs.title} onChange={changeHandler} id="outlined-basic" name="title" label="Название ивента" variant="outlined" />
             <TextField value={inputs.description} onChange={changeHandler} id="outlined-basic" name="description" label="Описание ивента " variant="outlined" />
@@ -67,22 +101,17 @@ export default function EditPage() {
             <TextField value={inputs.tgLink} onChange={changeHandler} id="outlined-basic" name="tgLink" label="ТГ линк" variant="outlined" />
           </Box>
         </CardContent>
-        <CardActionArea>
+        <CardActionArea sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
+        >
           <Button
-            onClick={(e) => {
-              dispatch(submitEvent(e, inputs, value));
-              setInputs({
-                title: '',
-                description: '',
-                tgLink: '',
-              });
-              navigate('/location/:id');
-            }}
+            // type="submit"
+            onClick={clickHandler}
             variant="contained"
-            component={Link}
-            to="/"
-            sx={{ backgroundColor: '#689f38', color: 'white' }}
-            style={{ marginLeft: '125px', marginBottom: '18px' }}
+            sx={{ backgroundColor: '#689f38', color: 'white', marginBottom: '10px' }}
           >
             Изменить
           </Button>

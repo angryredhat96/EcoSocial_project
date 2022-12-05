@@ -7,8 +7,8 @@ export default function eventsReducer(state = [], action) {
   switch (type) {
     case SET_EVENTS:
       return payload;
-    case SET_EVENT:
-      return [payload];
+    // case SET_EVENT:
+    //   return [payload];
     case ADD_EVENT:
       return [payload, ...state];
     case DELETE_EVENT:
