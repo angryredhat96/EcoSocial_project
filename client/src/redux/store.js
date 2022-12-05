@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import coordsReducer from './reducer/coordsReducer';
 import errorReducer from './reducer/errorReducer';
 import eventsReducer from './reducer/eventsReducer';
 import onePlaceReducer from './reducer/onePlaceReducer';
@@ -12,6 +13,7 @@ const store = configureStore({
     events: eventsReducer,
     place: placeReducer,
     onePlace: onePlaceReducer,
+    coordinates: coordsReducer,
   },
 });
 

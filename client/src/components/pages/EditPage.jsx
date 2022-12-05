@@ -21,7 +21,7 @@ export default function EditPage() {
   });
   // console.log(inputs);
   const [value, setValue] = React.useState(dayjs('2022-12-10T21:11:54'));
-//   console.log('val', value);
+  //   console.log('val', value);
   const handleChange = (newValue) => {
     setValue(newValue);
   };

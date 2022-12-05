@@ -10,6 +10,7 @@ import NavBar from './components/ui/NavBar/NavBar';
 import RegPage from './components/pages/RegPage/RegPage';
 import LogPage from './components/pages/LogPage/LogPage';
 import EditPage from './components/pages/EditPage';
+import NewLocationForm from './components/pages/NewLocationForm';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/lk" element={<LKPage />} />
         <Route path="/location/:id" element={<LocationPage />} />
+        <Route path="/location/add" element={<NewLocationForm />} />
         <Route path="/event/:id" element={<EventPage />} />
         <Route path="/event/:id/edit" element={<EditPage />} />
         <Route path="/new" element={<NewPage />} />
