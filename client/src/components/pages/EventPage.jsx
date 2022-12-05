@@ -7,7 +7,7 @@ import {
   CardActionArea, Button, Grid, CardActions,
   Container,
 } from '@mui/material';
-import { Box, Container } from '@mui/system';
+import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import TelegramIcon from '@mui/icons-material/Telegram';
@@ -80,7 +80,12 @@ export default function EventPage() {
           </Typography>
         </CardContent>
         <CardActionArea>
-          <Container>
+          <Container sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+          >
             <Button onClick={() => dispatch(addJoiner())} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
               Join
             </Button>
