@@ -86,7 +86,7 @@ export default function NewPage() {
                 description: '',
                 tgLink: '',
               });
-              navigate('/location/2');
+              navigate('/');
             }}
             variant="contained"
             sx={{ backgroundColor: '#689f38', color: 'white', marginBottom: '10px' }}

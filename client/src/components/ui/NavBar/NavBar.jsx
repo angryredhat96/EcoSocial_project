@@ -38,32 +38,32 @@ export default function NavBar() {
             <NavLink to="/" style={linkStyle}>Home</NavLink>
           </Box>
           {/* {!user ? ( */}
-            <>
-              <Box>
-                <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
-              </Box>
-              <Box>
-                <NavLink to="/log" style={linkStyle}>Log</NavLink>
-              </Box>
-            </>
+          <>
+            <Box>
+              <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
+            </Box>
+            <Box>
+              <NavLink to="/log" style={linkStyle}>Log</NavLink>
+            </Box>
+          </>
           {/* // ) : ( */}
-            <>
-              <Box>
-                <NavLink to="/lk" style={linkStyle}>LK</NavLink>
-              </Box>
-              <Box>
-                <NavLink
-                  to="/logout"
-                  onClick={() => {
-                    dispatch(logoutUser());
-                  }}
-                  style={linkStyle}
-                >
-                  LogOut
+          <>
+            <Box>
+              <NavLink to="/lk" style={linkStyle}>LK</NavLink>
+            </Box>
+            <Box>
+              <NavLink
+                to="/logout"
+                onClick={() => {
+                  dispatch(logoutUser());
+                }}
+                style={linkStyle}
+              >
+                LogOut
 
-                </NavLink>
-              </Box>
-            </>
+              </NavLink>
+            </Box>
+          </>
           {/* )} */}
         </Toolbar>
       </AppBar>

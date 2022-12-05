@@ -1,6 +1,5 @@
 const express = require('express');
 const { Event, User, Subscriber } = require('../db/models');
-const subscriber = require('../db/models/subscriber');
 
 const router = express.Router();
 
@@ -13,8 +12,9 @@ router.route('/')
     const {
       title, description, date, tgLink,
     } = req.body;
+    console.log('reqqqq', req.params);
     const newEvent = await Event.create({
-      title, description, date: new Date(date), tgLink, userId: req.session.user.id,
+      title, description, date: new Date(date), tgLink, userId: req.session.user.id, placeId: req.params.id,
     });
     // const eventWithUser = await Event.findByPk(newEvent.id, { include: User });
     res.json(newEvent);

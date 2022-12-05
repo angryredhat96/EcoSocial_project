@@ -17,7 +17,6 @@ export const getEvents = () => (dispatch) => {
 
 export const submitEvent = (e, inputs, value) => (dispatch) => {
   e.preventDefault();
-  console.log('dispatching date', value);
   axios.post('/events', {
     title: inputs.title, description: inputs.description, tgLink: inputs.tgLink, date: value,
   })
