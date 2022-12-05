@@ -1,11 +1,11 @@
 const express = require('express');
 const fileMiddleware = require('../middleware/file');
-const { User } = require('../db/models');
+// const vidMiddleware = require('../middleware/vidFale');
+const { User, Image } = require('../db/models');
 
 const router = express.Router();
 
 router.post('/upload', fileMiddleware.single('avatar'), async (req, res) => {
-  console.log(req.file, 'QQQQQQQ');
   try {
     if (req.file) {
       await User.update(

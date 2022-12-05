@@ -31,7 +31,7 @@ export default function LKPage() {
   }, [user]);
 
   if (!user || !avatar) return null;
-
+  console.log(avatar, 'AVVVVVVVVV');
   return (
     <Card
       sx={{
@@ -45,7 +45,7 @@ export default function LKPage() {
             component="img"
             height="270"
             width="100"
-            image={avatar ? `${avatar}` : 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg'}
+            image={avatar ? `http://localhost:3001/${avatar.slice(7)}` : 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg'}
             alt="avatar"
             style={{ borderRadius: '50%' }}
           />
