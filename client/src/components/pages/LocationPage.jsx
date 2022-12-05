@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { Container } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 import EventCard from '../ui/EventCard';
 import { getEvents } from '../../redux/actions/eventActions';
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
@@ -16,11 +17,28 @@ import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
 export default function LocationPage() {
   const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id, 'id');
+  // console.log(id, 'id');
   const selector = useSelector((store) => store.onePlace);
-  console.log('item', selector);
+  // console.log('item', selector);
   const events = useSelector((store) => store.events);
+  const [fileData, setFileData] = useState({ photos: null });
+  const [photo, setPhoto] = useState([]);
 
+  const changeHandler = (e) => {
+    setFileData(e.target.files);
+    // console.log(e.target.files, 'ZZZZZZZZ');
+  };
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.target);
+    data.append('photos', fileData);
+    // console.log(data, 'UUUUUUU');
+    await axios.post(`/api/photos/addphoto/${id}`, data)
+      .then((res) => setPhoto(JSON.parse(res.data?.image)));
+  };
+
+  console.log(photo, 'QQQQQQQQ');
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
   }, []);
@@ -48,6 +66,12 @@ export default function LocationPage() {
             <Button onClick={() => console.log('addEvent')} variant="contained" sx={{ backgroundColor: '#689f38', color: 'white' }} style={{ marginLeft: '230px', marginBottom: '18px' }}>
               +
             </Button>
+            <form onSubmit={submitHandler} encType="multipart/form-data">
+              <input type="file" name="photos" onChange={changeHandler} multiple />
+              <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
+                Добавить
+              </Button>
+            </form>
             <CardMedia
               component="img"
               height="140"

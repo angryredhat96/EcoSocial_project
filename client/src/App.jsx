@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Container } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import LKPage from './components/pages/LKPage';
 import EventPage from './components/pages/EventPage';
 import LocationPage from './components/pages/LocationPage';
@@ -9,10 +10,16 @@ import MainPage from './components/pages/MainPage/MainPage';
 import NavBar from './components/ui/NavBar/NavBar';
 import RegPage from './components/pages/RegPage/RegPage';
 import LogPage from './components/pages/LogPage/LogPage';
+import { checkUser } from './redux/actions/userActions';
 import EditPage from './components/pages/EditPage';
 import NewLocationForm from './components/pages/NewLocationForm';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkUser());
+  }, []);
   return (
     <Container maxWidth="lg">
       <NavBar />
