@@ -13,8 +13,8 @@ import { asyncDelete, setEvent } from '../../redux/actions/eventActions';
 export default function EventCard({ event, elId }) {
   console.log(event);
   const dispatch = useDispatch();
-  const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User.name.slice(1)}`;
-  console.log(userName, 'userName');
+  // const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User.name.slice(1)}`;
+  // console.log(userName, 'userName');
   const user = useSelector((store) => store.user);
   // const joiners = useSelector(((store) => store.joiners));
   // const counter = joiners.length();

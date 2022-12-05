@@ -31,5 +31,6 @@ module.exports = {
     'no-undef': 0,
     'react/jsx-props-no-spreading': 0,
     'no-unused-vars': 0,
+    eqeqeq: 0,
   },
 };
