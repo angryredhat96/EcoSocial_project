@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  AppBar, Box, Toolbar,
+  AppBar, Box, Toolbar, Typography, Button,
 } from '@mui/material';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container } from '@mui/system';
+// import { Container } from '@mui/system';
 import { logoutUser } from '../../../redux/actions/userActions';
 
 const linkStyle = {
@@ -15,6 +15,7 @@ const linkStyle = {
 };
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   return (
@@ -37,7 +38,7 @@ export default function NavBar() {
           <Box>
             <NavLink to="/" style={linkStyle}>Home</NavLink>
           </Box>
-          {/* {!user ? ( */}
+          {!user ? (
             <>
               <Box>
                 <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
@@ -45,26 +46,37 @@ export default function NavBar() {
               <Box>
                 <NavLink to="/log" style={linkStyle}>Log</NavLink>
               </Box>
+              <Typography variant="h6" sx={{ my: 2 }}>
+                Hi, stranger
+              </Typography>
             </>
-          {/* // ) : ( */}
+          ) : (
             <>
               <Box>
                 <NavLink to="/lk" style={linkStyle}>LK</NavLink>
               </Box>
               <Box>
-                <NavLink
-                  to="/logout"
+                <Button
+                  variant="text"
                   onClick={() => {
                     dispatch(logoutUser());
+                    navigate('/');
                   }}
                   style={linkStyle}
                 >
                   LogOut
 
-                </NavLink>
+                </Button>
+              </Box>
+              <Box>
+                <Typography variant="h6" sx={{ my: 2 }}>
+                  Hi,
+                  {' '}
+                  {user.name}
+                </Typography>
               </Box>
             </>
-          {/* )} */}
+          )}
         </Toolbar>
       </AppBar>
     </Box>

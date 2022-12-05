@@ -5,7 +5,6 @@ import { Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Map from '../Map';
 import { getPlacesThunk } from '../../../redux/actions/placeActions';
 import { setCoords } from '../../../redux/actions/coordsActions';
 
@@ -41,10 +40,10 @@ export default function MainPage() {
   }, []);
 
   useEffect(() => {
-    console.log(places, 'places');
+    // console.log(places, 'places');
     places?.forEach((el) => {
       const coordinates = [el.latitude, el.longitude];
-      console.log('coordinates', coordinates);
+      // console.log('coordinates', coordinates);
       const myPlacemarkWithContent = new ymaps.Placemark(coordinates, {
         balloonContent: `
                   <div class="balloon">
@@ -67,7 +66,7 @@ export default function MainPage() {
     if (!myMap.balloon.isOpen()) {
       const coords = e.get('coords');
       dispatch(setCoords(coords));
-      console.log(placeCoords, 'placeCoords');
+      // console.log(placeCoords, 'placeCoords');
       myMap.balloon.open(coords, {
         contentHeader: 'Событие!',
         contentBody: '<p>Кто-то щелкнул по карте.</p>'

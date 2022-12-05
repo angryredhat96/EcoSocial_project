@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-    ADD_JOINER,
+  ADD_JOINER,
   SET_JOINERS,
 } from '../types';
 

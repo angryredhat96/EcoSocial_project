@@ -8,9 +8,9 @@ export default function userReducer(state = null, action) {
     case SET_USER:
       return payload;
     case SET_EMPTY_USER:
-      return {};
+      return null;
     case LOGOUT:
-      return {};
+      return null;
     default:
       return state;
   }

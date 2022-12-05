@@ -1,6 +1,6 @@
 const express = require('express');
 const { Event, User, Subscriber } = require('../db/models');
-const subscriber = require('../db/models/subscriber');
+// const subscriber = require('../db/models/subscriber');
 
 const router = express.Router();
 
