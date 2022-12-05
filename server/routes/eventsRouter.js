@@ -7,7 +7,8 @@ router.route('/')
   .get(async (req, res) => {
     const allEvents = await Event.findAll({ order: [['createdAt', 'DESC']], include: User });
     res.json(allEvents);
-  })
+  });
+router.route('/:id')
   .post(async (req, res) => {
     const {
       title, description, date, tgLink,

@@ -78,7 +78,7 @@ export default function LocationPage() {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="200"
+            height="250"
             width="140"
             image="https://vsegda-pomnim.com/uploads/posts/2022-04/1649124761_13-vsegda-pomnim-com-p-priroda-gor-foto-17.jpg"
             alt="avatar"
