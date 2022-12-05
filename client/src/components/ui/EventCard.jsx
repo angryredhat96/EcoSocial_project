@@ -20,7 +20,7 @@ export default function EventCard({ id, event }) {
         <Typography variant="h5" component="div">
           {event.title}
         </Typography>
-        <Typography variant="body2">
+        <Typography variant="body2" type="link">
           {event.tgLink}
         </Typography>
       </CardContent>
