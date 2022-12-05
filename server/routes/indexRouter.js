@@ -15,9 +15,9 @@ router.post('/places', async (req, res) => {
 });
 
 router.get('/location/:id', async (req, res) => {
-  console.log(req.params.id, 'req.pppp');
+  // console.log(req.params.id, 'req.pppp');
   const onePlace = await Place.findOne({ include: Image, where: { id: req.params.id } });
-  console.log(onePlace, 'onePlace');
+  // console.log(onePlace, 'onePlace');
   res.json(onePlace);
 });
 

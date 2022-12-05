@@ -19,43 +19,37 @@ export default function EventCard({ event, elId }) {
   // const joiners = useSelector(((store) => store.joiners));
   // const counter = joiners.length();
   return (
-    <Grid item md="3">
-      <Card sx={{ minWidth: 275, height: '200px', fontFamily: 'Monospace' }}>
-        <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            событие от
-            {' '}
-            {userName}
-          </Typography>
-          <Typography variant="h5" component="div">
-            {event.title}
-          </Typography>
-          <Typography variant="body2" type="link">
-            {dayjs(event.date).format('DD.MM.YY')}
-          </Typography>
-          <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
-            🖖
-            {' '}
-            counter
-          </Typography>
-        </CardContent>
-        <CardActions>
-          {event.userId == user?.id ? (
-            <>
-              <Button onClick={() => dispatch(asyncDelete(elId))} variant="contained" sx={{ backgroundColor: '#ab003c' }} style={{ marginLeft: '10px', marginTop: '10px', marginBottom: '10px' }}>
-                Del
-              </Button>
-              <Button onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px' }}>
-                Инфо
-              </Button>
-            </>
-          ) : (
-            <Button onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '10px', marginTop: '10px', marginBottom: '10px' }}>
-              Инфо
-            </Button>
-          )}
-        </CardActions>
-      </Card>
-    </Grid>
+    <Card sx={{ minWidth: 275 }}>
+      <CardContent>
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          Автор события
+        </Typography>
+        <Typography variant="h5" component="div">
+          {event.title}
+        </Typography>
+        <Typography variant="body2">
+          {event.tgLink}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          onClick={() => {
+            dispatch(asyncEdit(event));
+            navigate(`/event/${event.id}/edit`);
+          }}
+          variant="contained"
+          sx={{ backgroundColor: '#689f38' }}
+          style={{ marginTop: '10px', marginBottom: '10px' }}
+        >
+          Edit
+        </Button>
+        <Button onClick={() => dispatch(asyncDelete(id))} variant="contained" sx={{ backgroundColor: '#ab003c' }} style={{ marginLeft: '10px', marginTop: '10px', marginBottom: '10px' }}>
+          Del
+        </Button>
+        <Button onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px' }}>
+          Инфо
+        </Button>
+      </CardActions>
+    </Card>
   );
 }

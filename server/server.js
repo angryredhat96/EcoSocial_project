@@ -4,9 +4,11 @@ const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const authRouter = require('./routes/authRouter');
+const apiRouter = require('./routes/apiRouter');
 const eventsRouter = require('./routes/eventsRouter');
 const indexRouter = require('./routes/indexRouter');
 const counterRouter = require('./routes/counterRouter');
+const apiPhotos = require('./routes/apiPhotos');
 
 
 require('dotenv').config();
@@ -18,9 +20,12 @@ app.use(cors({
   credentials: true,
   origin: true,
 }));
+
 app.use(morgan('dev'));
-app.use(express.json());
+app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
 app.use(session({
   name: 'sid',
   secret: process.env.SESSION_SECRET ?? 'test',
@@ -34,9 +39,11 @@ app.use(session({
 }));
 
 app.use('/auth', authRouter);
+app.use('/api/v1', apiRouter);
 app.use('/', indexRouter);
 app.use('/counter', counterRouter);
 
 app.use('/events', eventsRouter);
+app.use('/api/photos', apiPhotos);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

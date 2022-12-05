@@ -20,8 +20,12 @@ router.post('/reg', async (req, res) => {
     const newUser = await User.create({
       name, email, password: hashPassword,
     });
-    req.session.user = { id: newUser.id, name: newUser.name, email: newUser.email };
-    res.json({ id: newUser.id, name: newUser.name, email: newUser.email });
+    req.session.user = {
+      id: newUser.id, name: newUser.name, email: newUser.email,
+    };
+    res.json({
+      id: newUser.id, name: newUser.name, email: newUser.email, image: newUser.image,
+    });
   } catch (err) {
     console.error(err);
   }
@@ -40,16 +44,27 @@ router.post('/log', async (req, res) => {
 
     if (!isValid) return res.status(400).json({ message: 'Почта или пароль не верны' });
 
-    req.session.user = { id: userFromDb.id, name: userFromDb.name, email: userFromDb.email };
-    res.json({ id: userFromDb.id, name: userFromDb.name, email: userFromDb.email });
+    req.session.user = {
+      id: userFromDb.id, name: userFromDb.name, email: userFromDb.email,
+    };
+    res.json({
+      id: userFromDb.id, name: userFromDb.name, email: userFromDb.email, image: userFromDb.image,
+    });
   } catch (err) {
     console.error(err);
   }
 });
 
-router.post('/check', (req, res) => {
+router.post('/check', async (req, res) => {
   if (req.session.user) {
-    return res.json(req.session.user);
+    const currUser = await User.findByPk(req.session.user.id);
+    const user = {
+      id: currUser.id,
+      name: currUser.name,
+      email: currUser.email,
+      image: currUser.image,
+    };
+    return res.json(user);
   }
   return res.sendStatus(401);
 });

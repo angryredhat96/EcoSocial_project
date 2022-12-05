@@ -1,9 +1,11 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import {
-  CardActionArea, Button,
+  CardActionArea, Button, Grid, CardActions,
+  Container,
 } from '@mui/material';
 import { Box, Container } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
@@ -63,6 +65,7 @@ export default function EventPage() {
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
             {event.description}
+            s
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
             {dayjs(event.date).format('DD.MM.YY')}
