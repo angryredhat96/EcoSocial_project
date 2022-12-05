@@ -36,7 +36,7 @@ function App() {
         <Route path="/location/add" element={<NewLocationForm />} />
         <Route path="/event/:id" element={<EventPage />} />
         <Route path="/event/:id/edit" element={<EditPage />} />
-        <Route path="/new" element={<NewPage />} />
+        <Route path="/new/:id" element={<NewPage />} />
         <Route path="/reg" element={<RegPage />} />
         <Route path="/log" element={<LogPage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />

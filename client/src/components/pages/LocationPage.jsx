@@ -78,7 +78,7 @@ export default function LocationPage() {
         <CardActionArea>
           <CardMedia
             component="img"
-            height="200"
+            height="250"
             width="140"
             image="https://vsegda-pomnim.com/uploads/posts/2022-04/1649124761_13-vsegda-pomnim-com-p-priroda-gor-foto-17.jpg"
             alt="avatar"
@@ -93,14 +93,14 @@ export default function LocationPage() {
         onClick={() => console.log('addEvent')}
         variant="contained"
         component={Link}
-        to="/new"
+        to={`/new/${id}`}
         sx={{
           backgroundColor: '#689f38', marginLeft: '20px', height: '30px', mt: '470px',
         }}
       >
         Добавить ивент
       </Button>
-      <Grid container spacing={4} sx={{ mt: '30px' }}>
+      <Grid container spacing={6} sx={{ mt: '30px' }}>
         {events?.map((el) => (
           <EventCard
             key={el.id}

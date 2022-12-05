@@ -43,7 +43,7 @@ export default function EditPage() {
 
   const clickHandler = (e) => {
     e.preventDefault();
-    console.log(inputs, value, id);
+    console.log('boje', inputs, value, id);
     dispatch(asyncEdit(inputs, value, id));
     setInputs({
       title: '',
