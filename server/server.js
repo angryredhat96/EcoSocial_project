@@ -7,7 +7,9 @@ const authRouter = require('./routes/authRouter');
 const apiRouter = require('./routes/apiRouter');
 const eventsRouter = require('./routes/eventsRouter');
 const indexRouter = require('./routes/indexRouter');
+const counterRouter = require('./routes/counterRouter');
 const apiPhotos = require('./routes/apiPhotos');
+
 
 require('dotenv').config();
 
@@ -39,6 +41,8 @@ app.use(session({
 app.use('/auth', authRouter);
 app.use('/api/v1', apiRouter);
 app.use('/', indexRouter);
+app.use('/counter', counterRouter);
+
 app.use('/events', eventsRouter);
 app.use('/api/photos', apiPhotos);
 

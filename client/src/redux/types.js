@@ -15,6 +15,11 @@ export const UPDATE_EVENT = 'UPDATE_EVENT';
 // Метки на карте
 export const SET_PLACE = 'SET_PLACE';
 export const SET_ONE_PLACE = 'SET_ONE_PLACE';
+
+// JOINERS
+export const SET_JOINERS = 'SET_EVENTS';
+export const ADD_JOINER = 'ADD_JOINER';
+
 export const ADD_PLACE = 'ADD_PLACE';
 
 // Координаты

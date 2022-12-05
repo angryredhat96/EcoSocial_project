@@ -4,13 +4,20 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { asyncDelete, asyncEdit, setEvent } from '../../redux/actions/eventActions';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
+import { Grid } from '@mui/material';
+import { asyncDelete, setEvent } from '../../redux/actions/eventActions';
 
-export default function EventCard({ id, event }) {
+export default function EventCard({ event, elId }) {
+  console.log(event);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User.name.slice(1)}`;
+  console.log(userName, 'userName');
+  const user = useSelector((store) => store.user);
+  // const joiners = useSelector(((store) => store.joiners));
+  // const counter = joiners.length();
   return (
     <Card sx={{ minWidth: 275 }}>
       <CardContent>
@@ -20,7 +27,7 @@ export default function EventCard({ id, event }) {
         <Typography variant="h5" component="div">
           {event.title}
         </Typography>
-        <Typography variant="body2" type="link">
+        <Typography variant="body2">
           {event.tgLink}
         </Typography>
       </CardContent>

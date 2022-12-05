@@ -1,41 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Button } from '@mui/material';
 import { Container } from '@mui/system';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-export default function LKPage() {
-  const user = useSelector((store) => store.user);
-  const [fileData, setFileData] = useState({ avatar: null });
-  const [avatar, setAvatar] = useState(user?.image || 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg');
+export default function ProfilePage() {
+  const dispatch = useDispatch();
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    const data = new FormData();
-    data.append('avatar', fileData.avatar);
-    await axios.post('/api/v1/upload', data)
-      .then((res) => setAvatar(res.data));
-  };
-  const changeAmg = (e) => {
-    setFileData({ [e.target.name]: e.target.files[0] });
-  };
-  useEffect(() => {
-    if (!user?.image) {
-      setAvatar('https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg');
-    } else {
-      setAvatar(user.image);
-    }
-  }, [user]);
-
-  if (!user || !avatar) return null;
-  console.log(avatar, 'AVVVVVVVVV');
   return (
-    <Container style={{
-      color: 'orange',
+    <Container sx={{
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
@@ -51,8 +28,8 @@ export default function LKPage() {
           <div className="row">
             <CardMedia
               component="img"
-              height="270"
-              width="100"
+              height="140"
+              width="140"
               image="https://avatars.mds.yandex.net/get-mpic/5259100/img_id5021518703231911464.jpeg/orig"
               alt="avatar"
               style={{ borderRadius: '50%' }}
