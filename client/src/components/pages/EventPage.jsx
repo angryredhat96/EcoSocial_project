@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -89,7 +90,7 @@ export default function EventPage() {
             <Button onClick={() => dispatch(addJoiner())} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
               Join
             </Button>
-            {event.userId == user.id ? (
+            {event?.userId == user?.id ? (
               <Button
                 onClick={() => {
                 // dispatch(asyncEdit(event));

@@ -15,7 +15,7 @@ import {
 
 export default function EditPage() {
   const { id } = useParams();
-  const { event } = useSelector((store) => store.oneEvent);
+  const event = useSelector((store) => store.events.find((el) => el?.id === Number(id)));
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = React.useState({
@@ -44,13 +44,13 @@ export default function EditPage() {
   const clickHandler = (e) => {
     e.preventDefault();
     console.log('boje', inputs, value, id);
-    dispatch(asyncEdit(inputs, value, id));
+    dispatch(asyncEdit(id, inputs, value));
     setInputs({
       title: '',
       description: '',
       tgLink: '',
     });
-    navigate('/');
+    navigate(`/location/${id}`);
   };
 
   return (
