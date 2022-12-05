@@ -24,9 +24,9 @@ export default function EditPage() {
     tgLink: '',
   });
 
-  // React.useEffect(() => {
-  //   dispatch(getOneEvent(id));
-  // }, []);
+  React.useEffect(() => {
+    dispatch(getOneEvent(id));
+  }, []);
 
   React.useEffect(() => {
     if (event) {
@@ -40,11 +40,29 @@ export default function EditPage() {
     setValue(newValue);
   };
   const changeHandler = (e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const clickHandler = (e) => {
+    e.preventDefault();
+    console.log(inputs, value, id);
+    dispatch(asyncEdit(inputs, value, id));
+    setInputs({
+      title: '',
+      description: '',
+      tgLink: '',
+    });
+    navigate('/');
+  };
+
   return (
-    <Container>
+    <Container sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+    }}
+    >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '15px', justifyContent: 'center', position: 'absolute', top: '10%', left: '40%',
+          maxWidth: 345, marginTop: '55px',
         }}
         className="container"
       >
@@ -56,15 +74,16 @@ export default function EditPage() {
             }}
             noValidate
             autoComplete="off"
-            onSubmit={(e) => {
-              e.preventDefault();
-              dispatch(asyncEdit(inputs, value, id));
-              setInputs({
-                title: '',
-                description: '',
-                tgLink: '',
-              });
-            }}
+            // onSubmit={(e) => {
+            //   e.preventDefault();
+            //   console.log(inputs, value, id);
+            //   dispatch(asyncEdit(inputs, value, id));
+            //   setInputs({
+            //     title: '',
+            //     description: '',
+            //     tgLink: '',
+            //   });
+            // }}
           >
             <TextField value={inputs.title} onChange={changeHandler} id="outlined-basic" name="title" label="Название ивента" variant="outlined" />
             <TextField value={inputs.description} onChange={changeHandler} id="outlined-basic" name="description" label="Описание ивента " variant="outlined" />
@@ -82,21 +101,17 @@ export default function EditPage() {
             <TextField value={inputs.tgLink} onChange={changeHandler} id="outlined-basic" name="tgLink" label="ТГ линк" variant="outlined" />
           </Box>
         </CardContent>
-        <CardActionArea>
+        <CardActionArea sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
+        >
           <Button
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(asyncEdit(inputs, value, id));
-              setInputs({
-                title: '',
-                description: '',
-                tgLink: '',
-              });
-              navigate('/location/:id');
-            }}
+            // type="submit"
+            onClick={clickHandler}
             variant="contained"
-            sx={{ backgroundColor: '#689f38', color: 'white' }}
-            style={{ marginLeft: '125px', marginBottom: '18px' }}
+            sx={{ backgroundColor: '#689f38', color: 'white', marginBottom: '10px' }}
           >
             Изменить
           </Button>

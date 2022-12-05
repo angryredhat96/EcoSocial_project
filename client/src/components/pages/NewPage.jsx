@@ -27,10 +27,15 @@ export default function NewPage() {
   };
   const changeHandler = (e) => setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
-    <Container>
+    <Container sx={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'center',
+    }}
+    >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '15px', justifyContent: 'center', position: 'absolute', top: '10%', left: '40%',
+          maxWidth: 345, marginTop: '55px',
         }}
         className="container"
       >
@@ -67,7 +72,12 @@ export default function NewPage() {
             <TextField value={inputs.tgLink} onChange={changeHandler} id="outlined-basic" name="tgLink" label="ТГ линк" variant="outlined" />
           </Box>
         </CardContent>
-        <CardActionArea>
+        <CardActionArea sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
+        >
           <Button
             onClick={(e) => {
               dispatch(submitEvent(e, inputs, value));
@@ -76,11 +86,10 @@ export default function NewPage() {
                 description: '',
                 tgLink: '',
               });
-              navigate('/');
+              navigate('/location/2');
             }}
             variant="contained"
-            sx={{ backgroundColor: '#689f38', color: 'white' }}
-            style={{ marginLeft: '125px', marginBottom: '18px' }}
+            sx={{ backgroundColor: '#689f38', color: 'white', marginBottom: '10px' }}
           >
             Создать
           </Button>

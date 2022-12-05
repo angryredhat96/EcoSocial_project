@@ -38,10 +38,12 @@ export const getOneEvent = (id) => (dispatch) => {
 };
 
 export const asyncEdit = (id, event, value) => (dispatch) => {
+  console.log({
+    title: event.title, description: event.description, tgLink: event.tgLink, date: value,
+  });
   axios.patch(`/events/${id}/edit`, {
     title: event.title, description: event.description, tgLink: event.tgLink, date: value,
   })
     .then((res) => dispatch(editEvent()))
     .catch((err) => console.log('error in editing Event', err));
 };
-

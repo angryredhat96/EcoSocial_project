@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './reducer/counterReducer';
 import errorReducer from './reducer/errorReducer';
 import eventsReducer from './reducer/eventsReducer';
+import joinerReducer from './reducer/joinersReducer';
 import oneEventReducer from './reducer/oneEventReducer';
 import onePlaceReducer from './reducer/onePlaceReducer';
 import placeReducer from './reducer/placeReducer';
@@ -15,7 +15,7 @@ const store = configureStore({
     oneEvent: oneEventReducer,
     place: placeReducer,
     onePlace: onePlaceReducer,
-    counter: counterReducer,
+    joiners: joinerReducer,
   },
 });
 

@@ -1,12 +1,12 @@
 const express = require('express');
-const { Event, User } = require('../db/models');
+const { Event, User, Subscriber } = require('../db/models');
+const subscriber = require('../db/models/subscriber');
 
 const router = express.Router();
 
 router.route('/')
   .get(async (req, res) => {
     const allEvents = await Event.findAll({ order: [['createdAt', 'DESC']], include: User });
-    const user = await User.findOne({ where: { id: req.session.user.id } });
     res.json(allEvents);
   })
   .post(async (req, res) => {
@@ -18,6 +18,18 @@ router.route('/')
     });
     // const eventWithUser = await Event.findByPk(newEvent.id, { include: User });
     res.json(newEvent);
+  });
+
+router.route('/joiners')
+  .get(async (req, res) => {
+    const allJoiners = await Subscriber.findAll({ order: [['createdAt', 'DESC']], include: User });
+    res.json(allJoiners);
+  })
+  .post(async (req, res) => {
+    const newJoiner = await Subscriber.findOrCreate({
+      userId: req.session.user.id, eventId: req.params,
+    });
+    res.json(newJoiner);
   });
 
 router.delete('/:id', async (req, res) => {
@@ -39,6 +51,7 @@ router.patch('/:id/edit', async (req, res) => {
     const fin = {
       title, description, date: new Date(date), tgLink, userId: req.session.user.id,
     };
+    console.log(fin, ' fin');
     const { id } = req.params;
     await Event.update(fin, { where: { id } });
     res.sendStatus(200);
