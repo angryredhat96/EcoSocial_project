@@ -10,7 +10,6 @@ const indexRouter = require('./routes/indexRouter');
 const counterRouter = require('./routes/counterRouter');
 const apiPhotos = require('./routes/apiPhotos');
 
-
 require('dotenv').config();
 
 const app = express();

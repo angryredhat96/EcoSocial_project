@@ -8,13 +8,15 @@ router.route('/')
   .get(async (req, res) => {
     const allEvents = await Event.findAll({ order: [['createdAt', 'DESC']], include: User });
     res.json(allEvents);
-  })
+  });
+router.route('/:id')
   .post(async (req, res) => {
     const {
       title, description, date, tgLink,
     } = req.body;
+    console.log('reqqqq', req.params);
     const newEvent = await Event.create({
-      title, description, date: new Date(date), tgLink, userId: req.session.user.id,
+      title, description, date: new Date(date), tgLink, userId: req.session.user.id, placeId: req.params.id,
     });
     // const eventWithUser = await Event.findByPk(newEvent.id, { include: User });
     res.json(newEvent);

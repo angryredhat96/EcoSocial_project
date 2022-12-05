@@ -78,7 +78,12 @@ export default function EventPage() {
           </Typography>
         </CardContent>
         <CardActionArea>
-          <Container>
+          <Container sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+          }}
+          >
             <Button onClick={() => dispatch(addJoiner())} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
               Join
             </Button>
