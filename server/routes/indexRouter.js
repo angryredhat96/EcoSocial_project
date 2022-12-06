@@ -4,7 +4,7 @@ const { Place, Image } = require('../db/models');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const allPlaces = await Place.findAll();
+  const allPlaces = await Place.findAll({ include: Image });
   res.json(allPlaces);
 });
 
