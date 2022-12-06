@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -13,8 +14,8 @@ import { asyncDelete, setEvent } from '../../redux/actions/eventActions';
 export default function EventCard({ event, elId }) {
   console.log(event);
   const dispatch = useDispatch();
-  // const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User.name.slice(1)}`;
-  // console.log(userName, 'userName');
+  const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User?.name.slice(1)}`;
+  console.log(userName, 'userName');
   const user = useSelector((store) => store.user);
   // const joiners = useSelector(((store) => store.joiners));
   // const counter = joiners.length();
@@ -40,9 +41,9 @@ export default function EventCard({ event, elId }) {
           </Typography>
         </CardContent>
         <CardActions>
-          {event.userId == user.id ? (
+          {event?.userId == user?.id ? (
             <>
-              <Button onClick={() => dispatch(asyncDelete(id))} variant="contained" sx={{ backgroundColor: '#ab003c' }} style={{ marginLeft: '10px', marginTop: '10px', marginBottom: '10px' }}>
+              <Button onClick={() => dispatch(asyncDelete(elId))} variant="contained" sx={{ backgroundColor: '#ab003c' }} style={{ marginLeft: '10px', marginTop: '10px', marginBottom: '10px' }}>
                 Del
               </Button>
               <Button onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px' }}>

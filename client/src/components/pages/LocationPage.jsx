@@ -69,10 +69,10 @@ export default function LocationPage() {
       >
         <CardContent>
           <Typography gutterBottom variant="h4" component="div">
-            {selector.title}
+            {selector?.title}
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {selector.description}
+            {selector?.description}
           </Typography>
         </CardContent>
         <CardActionArea>

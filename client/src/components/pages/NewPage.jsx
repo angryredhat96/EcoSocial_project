@@ -8,10 +8,11 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { submitEvent } from '../../redux/actions/eventActions';
 
 export default function NewPage() {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputs, setInputs] = React.useState({
@@ -48,7 +49,7 @@ export default function NewPage() {
             noValidate
             autoComplete="off"
             onSubmit={(e) => {
-              dispatch(submitEvent(e, inputs, value));
+              dispatch(submitEvent(e, inputs, value, id));
               setInputs({
                 title: '',
                 description: '',
@@ -80,13 +81,13 @@ export default function NewPage() {
         >
           <Button
             onClick={(e) => {
-              dispatch(submitEvent(e, inputs, value));
+              dispatch(submitEvent(e, inputs, value, id));
               setInputs({
                 title: '',
                 description: '',
                 tgLink: '',
               });
-              navigate('/');
+              navigate(`/location/${id}`);
             }}
             variant="contained"
             sx={{ backgroundColor: '#689f38', color: 'white', marginBottom: '10px' }}
