@@ -3,15 +3,18 @@ import {
   Button, Grid, Paper, Stack, TextField,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { regUser } from '../../../redux/actions/userActions';
 
 export default function RegPage() {
   const dispatch = useDispatch();
   const error = useSelector((store) => store.erroreg);
+  const navigate = useNavigate();
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
       dispatch(regUser(Object.fromEntries(new FormData(e.target))));
+      navigate('/');
     }}
     >
       <Grid align="center">

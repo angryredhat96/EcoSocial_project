@@ -22,7 +22,7 @@ import { addJoiner, getJoiners } from '../../redux/actions/joinersActions';
 export default function EventPage() {
   const { id } = useParams();
   const event = useSelector((store) => store.events).find((el) => el.id == id);
-  const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User.name.slice(1)}`;
+  // const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User.name.slice(1)}`;
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -58,8 +58,6 @@ export default function EventPage() {
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to="/profile/:id">
             событие от
-            {' '}
-            {userName}
           </Typography>
           <Typography gutterBottom variant="h4" style={{ color: '#689f38' }} component="div">
             {event.title}
