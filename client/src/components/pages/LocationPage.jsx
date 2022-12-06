@@ -25,10 +25,12 @@ export default function LocationPage() {
   const selector = useSelector((store) => store.onePlace);
   // console.log('item', selector);
   const events = useSelector((store) => store.events);
+  const allUsers = useSelector((store) => store.users);
   const [fileData, setFileData] = useState({ photos: null });
   const [photo, setPhoto] = useState([]);
   const photoId = useSelector((store) => store.photos);
-  console.log(photoId, 'PHOOOOOOOOOOO');
+  // console.log(photoId, 'PHOOOOOOOOOOO');
+  console.log(events, 'events');
 
   const changeHandler = (e) => {
     setFileData(e.target.files);
@@ -46,8 +48,11 @@ export default function LocationPage() {
   console.log(photo, 'QQQQQQQQ');
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
-    dispatch(getAllUsers());
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(getAllUsers());
+  // }, []);
 
   useEffect(() => {
     dispatch(getEventsByLocation(id));
