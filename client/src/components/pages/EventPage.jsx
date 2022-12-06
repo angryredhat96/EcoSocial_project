@@ -56,7 +56,7 @@ export default function EventPage() {
         className="container"
       >
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to="/profile/:id">
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
             событие от
             {' '}
             {userName}

@@ -70,7 +70,7 @@ export default function EditPage() {
           <Box
             component="form"
             sx={{
-              '& > :not(style)': { m: 1, width: '36ch' },
+              '& > :not(style)': { m: 1, width: '30ch' },
             }}
             noValidate
             autoComplete="off"

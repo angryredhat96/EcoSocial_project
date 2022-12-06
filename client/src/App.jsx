@@ -27,7 +27,7 @@ function App() {
     dispatch(checkUser());
   }, []);
   return (
-    <Container>
+    <>
       <NavBar />
       <Routes>
         <Route path="/" element={<MainPage />} />
@@ -41,7 +41,7 @@ function App() {
         <Route path="/log" element={<LogPage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
       </Routes>
-    </Container>
+    </>
   );
 }
 

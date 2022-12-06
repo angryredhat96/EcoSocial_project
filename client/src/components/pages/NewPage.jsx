@@ -44,7 +44,7 @@ export default function NewPage() {
           <Box
             component="form"
             sx={{
-              '& > :not(style)': { m: 1, width: '36ch' },
+              '& > :not(style)': { m: 1, width: '30ch' },
             }}
             noValidate
             autoComplete="off"
@@ -58,7 +58,16 @@ export default function NewPage() {
             }}
           >
             <TextField value={inputs.title} onChange={changeHandler} id="outlined-basic" name="title" label="Название ивента" variant="outlined" />
-            <TextField value={inputs.description} onChange={changeHandler} id="outlined-basic" name="description" label="Описание ивента " variant="outlined" />
+            <TextField
+              value={inputs.description}
+              onChange={changeHandler}
+              name="description"
+              label="Описание ивента "
+              id="outlined-multiline-static"
+              multiline
+              rows={8}
+              defaultValue="Default Value"
+            />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Stack spacing={3}>
                 <DesktopDatePicker
