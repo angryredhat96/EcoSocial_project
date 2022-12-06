@@ -62,7 +62,7 @@ export default function EditPage() {
     >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '55px',
+          maxWidth: 345, marginTop: '15px',
         }}
         className="container"
       >
@@ -86,7 +86,16 @@ export default function EditPage() {
             // }}
           >
             <TextField value={inputs.title} onChange={changeHandler} id="outlined-basic" name="title" label="Название ивента" variant="outlined" />
-            <TextField value={inputs.description} onChange={changeHandler} id="outlined-basic" name="description" label="Описание ивента " variant="outlined" />
+            <TextField
+              value={inputs.description}
+              onChange={changeHandler}
+              name="description"
+              label="Описание ивента "
+              id="outlined-multiline-static"
+              multiline
+              rows={6}
+              defaultValue="Default Value"
+            />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Stack spacing={3}>
                 <DesktopDatePicker

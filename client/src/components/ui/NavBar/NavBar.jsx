@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  AppBar, Box, Toolbar, Typography, Button,
+  AppBar, Box, Toolbar, Typography, Button, IconButton, Avatar,
 } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,68 +19,73 @@ export default function NavBar() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   return (
-    <Container>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position="static"
-          style={{
-            backgroundColor: '#689f38',
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-evenly',
-          }}
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar
+        position="static"
+        style={{
+          backgroundColor: '#689f38',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly',
+        }}
+      >
+        <Toolbar sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-evenly',
+        }}
         >
-          <Toolbar sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-evenly',
-          }}
-          >
-            <Box>
-              <NavLink to="/" style={linkStyle}>Home</NavLink>
-            </Box>
-            {!user ? (
-              <>
-                <Box>
-                  <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
-                </Box>
-                <Box>
-                  <NavLink to="/log" style={linkStyle}>Log</NavLink>
-                </Box>
-                <Typography variant="h6" sx={{ my: 2 }}>
-                  Hi, stranger
-                </Typography>
-              </>
-            ) : (
-              <>
-                <Box>
-                  <NavLink to="/lk" style={linkStyle}>LK</NavLink>
-                </Box>
-                <Box>
-                  <Button
-                    variant="text"
-                    onClick={() => {
-                      dispatch(logoutUser());
-                      navigate('/');
-                    }}
-                    style={linkStyle}
-                  >
-                    LogOut
+          <Box>
+            <NavLink to="/" style={linkStyle}>Home</NavLink>
+          </Box>
+          {!user ? (
+            <>
+              <Box>
+                <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
+              </Box>
+              <Box>
+                <NavLink to="/log" style={linkStyle}>Log</NavLink>
+              </Box>
+              <Typography variant="h6" sx={{ my: 2 }}>
+                xXx
+              </Typography>
+            </>
+          ) : (
+            <>
+              <Box>
+                <NavLink to="/lk" style={linkStyle}>LK</NavLink>
+              </Box>
+              <Box>
+                <Button
+                  variant="text"
+                  onClick={() => {
+                    dispatch(logoutUser());
+                    navigate('/');
+                  }}
+                  style={linkStyle}
+                >
+                  LogOut
 
-                  </Button>
-                </Box>
-                <Box>
-                  <Typography variant="h6" sx={{ my: 2 }}>
-                    Hi,
+                </Button>
+              </Box>
+              <Box>
+                <IconButton
+                  onClick={() => navigate('/lk')}
+                  sx={{ p: 0 }}
+                >
+                  <Avatar alt="kakoytochel" src={`http://localhost:3001/${user?.image?.slice(7)}`} />
+                </IconButton>
+                {/* <Typography variant="h6" sx={{ my: 2 }}>
+                    {user.image} */}
+                {/* Hi,
                     {' '}
-                    {user.name}
-                  </Typography>
-                </Box>
-              </>
-            )}
-          </Toolbar>
-        </AppBar>
-      </Box>
-    </Container>
+                    {user.name} */}
+                {/* </Typography> */}
+              </Box>
+            </>
+          )}
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 }

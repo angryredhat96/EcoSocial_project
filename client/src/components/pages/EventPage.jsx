@@ -26,6 +26,8 @@ export default function EventPage() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const allUser = useSelector((store) => store.users);
+  console.log(allUser, 'MUUUUUUUUU');
   // const joiners = useSelector(((store) => store.joiners));
   // const counter = joiners.length();
 

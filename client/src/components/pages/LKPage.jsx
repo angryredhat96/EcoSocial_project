@@ -58,7 +58,7 @@ export default function LKPage() {
               style={{ borderRadius: '50%' }}
             />
             <Button onClick={() => console.log('changePhoto')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
-              Изменить
+              Изменитььь
             </Button>
           </div>
           <form onSubmit={submitHandler} encType="multipart/form-data">

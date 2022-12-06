@@ -16,6 +16,7 @@ import ProfilePage from './components/pages/ProfilePage';
 import { getEvents } from './redux/actions/eventActions';
 
 import NewLocationForm from './components/pages/NewLocationForm';
+import { getAllUsers } from './redux/actions/allusersActions';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checkUser());
+    dispatch(getAllUsers());
   }, []);
   return (
     <>
