@@ -50,7 +50,7 @@ export default function EditPage() {
       description: '',
       tgLink: '',
     });
-    navigate(`/location/${id}`);
+    navigate(`/location/${event.placeId}`);
   };
 
   return (

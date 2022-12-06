@@ -115,7 +115,7 @@ export default function MainPage() {
         noValidate
         autoComplete="off"
       >
-        <div className="row">
+        {/* <div className="row">
           <TextField
             required
             id="outlined-required"
@@ -124,14 +124,14 @@ export default function MainPage() {
             defaultValue=" "
             value={newInput}
             onChange={(e) => setNewInput(e.target.value)}
-          />
-          <Button onClick={() => console.log('add')} variant="contained" sx={{ backgroundColor: '#689f38', maxWidth: '10px' }} style={{ marginLeft: '15px', marginTop: '18px' }}>
+          /> */}
+          {/* <Button onClick={() => console.log('add')} variant="contained" sx={{ backgroundColor: '#689f38', maxWidth: '10px' }} style={{ marginLeft: '15px', marginTop: '18px' }}>
             +
-          </Button>
+          </Button> */}
           {/* <AddIcon onClick={() => console.log('add')} /> */}
-        </div>
+        {/* </div> */}
       </Box>
-      <div style={{ alignContent: 'center' }}>
+      <div style={{ alignContent: 'center', marginTop: '25px' }}>
         <div
           id="map"
           className="map"
