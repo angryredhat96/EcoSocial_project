@@ -30,5 +30,5 @@ export const logoutUser = () => (dispatch) => {
 export const checkUser = () => (dispatch) => {
   axios.post('/auth/check')
     .then((res) => dispatch(setAuth(res.data)))
-    .catch(console.log);
+    .catch(() => dispatch(setEmpty()));
 };
