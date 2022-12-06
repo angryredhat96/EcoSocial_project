@@ -3,15 +3,18 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../../redux/actions/userActions';
 
 export default function LogPage() {
   const dispatch = useDispatch();
   const error = useSelector((store) => store.error);
+  const navigate = useNavigate();
   return (
     <form onSubmit={(e) => {
       e.preventDefault();
       dispatch(loginUser(Object.fromEntries(new FormData(e.target))));
+      navigate('/');
     }}
     >
       <Grid align="center">
