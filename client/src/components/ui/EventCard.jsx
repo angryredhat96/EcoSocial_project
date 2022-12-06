@@ -8,8 +8,15 @@ import Typography from '@mui/material/Typography';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-import { Grid } from '@mui/material';
+import { Avatar, Grid, IconButton } from '@mui/material';
 import { asyncDelete, setEvent } from '../../redux/actions/eventActions';
+
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'gray',
+  fontFamily: 'Monospace',
+  fontSize: 14,
+};
 
 export default function EventCard({ event, elId }) {
   console.log(event);
@@ -21,9 +28,15 @@ export default function EventCard({ event, elId }) {
   // const counter = joiners.length();
   return (
     <Grid item md="4">
-      <Card sx={{ minWidth: 275, height: '200px' }}>
+      <Card sx={{ minWidth: 275, height: '220px' }}>
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
+            <IconButton
+              sx={{ p: 0 }}
+            >
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User.image?.slice(7)}`} />
+            </IconButton>
+            {' '}
             событие от
             {' '}
             {userName}

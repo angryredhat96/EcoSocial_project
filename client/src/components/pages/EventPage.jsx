@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import {
   CardActionArea, Button, Grid, CardActions,
   Container,
+  IconButton,
+  Avatar,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,6 +28,8 @@ export default function EventPage() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const allUser = useSelector((store) => store.users);
+  console.log(allUser, 'MUUUUUUUUU');
   // const joiners = useSelector(((store) => store.joiners));
   // const counter = joiners.length();
 
@@ -56,7 +60,13 @@ export default function EventPage() {
         className="container"
       >
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to="/profile/:id">
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
+            <IconButton
+              sx={{ p: 0 }}
+            >
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User.image?.slice(7)}`} />
+            </IconButton>
+            {' '}
             событие от
             {' '}
             {userName}

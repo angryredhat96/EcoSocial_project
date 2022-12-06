@@ -8,6 +8,8 @@ const apiRouter = require('./routes/apiRouter');
 const eventsRouter = require('./routes/eventsRouter');
 const indexRouter = require('./routes/indexRouter');
 const counterRouter = require('./routes/counterRouter');
+const allusersRouter = require('./routes/allusersRouter');
+
 const apiPhotos = require('./routes/apiPhotos');
 const locRouter = require('./routes/locRouter');
 
@@ -44,6 +46,7 @@ app.use('/', indexRouter);
 app.use('/counter', counterRouter);
 
 app.use('/events', eventsRouter);
+app.use('/users', allusersRouter);
 app.use('/api/photos', apiPhotos);
 app.use('/api/v2', locRouter);
 
