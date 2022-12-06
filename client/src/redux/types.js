@@ -16,6 +16,9 @@ export const UPDATE_EVENT = 'UPDATE_EVENT';
 export const SET_PLACE = 'SET_PLACE';
 export const SET_ONE_PLACE = 'SET_ONE_PLACE';
 
+// PHOTO
+export const SET_PHOTOS_ID = 'SET_PHOTOS_ID';
+
 // JOINERS
 export const SET_JOINERS = 'SET_EVENTS';
 export const ADD_JOINER = 'ADD_JOINER';

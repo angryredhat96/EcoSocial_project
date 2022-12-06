@@ -53,7 +53,7 @@ export default function LKPage() {
               component="img"
               height="270"
               width="100"
-              image="https://avatars.mds.yandex.net/get-mpic/5259100/img_id5021518703231911464.jpeg/orig"
+              image={avatar ? `http://localhost:3001/${avatar.slice(7)}` : 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg'}
               alt="avatar"
               style={{ borderRadius: '50%' }}
             />
@@ -61,6 +61,12 @@ export default function LKPage() {
               Изменить
             </Button>
           </div>
+          <form onSubmit={submitHandler} encType="multipart/form-data">
+            <input type="file" name="avatar" onChange={changeAmg} />
+            <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
+              Изменить
+            </Button>
+          </form>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
               Имя юзера

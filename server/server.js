@@ -9,6 +9,7 @@ const eventsRouter = require('./routes/eventsRouter');
 const indexRouter = require('./routes/indexRouter');
 const counterRouter = require('./routes/counterRouter');
 const apiPhotos = require('./routes/apiPhotos');
+const locRouter = require('./routes/locRouter');
 
 require('dotenv').config();
 
@@ -44,5 +45,6 @@ app.use('/counter', counterRouter);
 
 app.use('/events', eventsRouter);
 app.use('/api/photos', apiPhotos);
+app.use('/api/v2', locRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
