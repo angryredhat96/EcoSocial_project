@@ -62,7 +62,7 @@ export default function EditPage() {
     >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '15px',
+          maxWidth: 360, marginTop: '15px',
         }}
         className="container"
       >
@@ -70,7 +70,7 @@ export default function EditPage() {
           <Box
             component="form"
             sx={{
-              '& > :not(style)': { m: 1, width: '30ch' },
+              '& > :not(style)': { m: 1, width: '32ch' },
             }}
             noValidate
             autoComplete="off"

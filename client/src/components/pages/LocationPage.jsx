@@ -16,6 +16,7 @@ import { getEvents, getEventsByLocation } from '../../redux/actions/eventActions
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
 import { setPhotosThunk } from '../../redux/actions/photoActions';
 import Courusel from './Courusel';
+import { getAllUsers } from '../../redux/actions/allusersActions';
 
 export default function LocationPage() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ export default function LocationPage() {
   console.log(photo, 'QQQQQQQQ');
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
+    dispatch(getAllUsers());
   }, []);
 
   useEffect(() => {
@@ -96,18 +98,25 @@ export default function LocationPage() {
           <AddIcon sx={{ color: 'black' }} />
         </NavLink> */}
       </Card>
-      <Button
-        onClick={() => console.log('addEvent')}
-        variant="contained"
-        component={Link}
-        to={`/new/${id}`}
-        sx={{
-          backgroundColor: '#689f38', marginLeft: '20px', height: '30px', mt: '470px',
-        }}
+      <Container sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
       >
-        Добавить ивент
-      </Button>
-      <Grid container spacing={6} sx={{ mt: '30px' }}>
+        <Button
+          onClick={() => console.log('addEvent')}
+          variant="contained"
+          component={Link}
+          to={`/new/${id}`}
+          sx={{
+            backgroundColor: '#689f38', marginLeft: '20px', height: '30px', mt: '15px',
+          }}
+        >
+          Добавить ивент
+        </Button>
+      </Container>
+      <Grid container spacing={6} sx={{ mt: '15px' }}>
         {events?.map((el) => (
           <EventCard
             key={el.id}
