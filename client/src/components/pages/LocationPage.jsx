@@ -14,6 +14,8 @@ import axios from 'axios';
 import EventCard from '../ui/EventCard';
 import { getEvents } from '../../redux/actions/eventActions';
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
+import { setPhotosThunk } from '../../redux/actions/photoActions';
+import Courusel from './Courusel';
 
 export default function LocationPage() {
   const dispatch = useDispatch();
@@ -24,6 +26,8 @@ export default function LocationPage() {
   const events = useSelector((store) => store.events);
   const [fileData, setFileData] = useState({ photos: null });
   const [photo, setPhoto] = useState([]);
+  const photoId = useSelector((store) => store.photos);
+  console.log(photoId, 'PHOOOOOOOOOOO');
 
   const changeHandler = (e) => {
     setFileData(e.target.files);
@@ -34,9 +38,8 @@ export default function LocationPage() {
     e.preventDefault();
     const data = new FormData(e.target);
     data.append('photos', fileData);
-    // console.log(data, 'UUUUUUU');
     await axios.post(`/api/photos/addphoto/${id}`, data)
-      .then((res) => setPhoto(JSON.parse(res.data?.image)));
+      .then((res) => setPhoto(res.data?.image));
   };
 
   console.log(photo, 'QQQQQQQQ');
@@ -48,6 +51,9 @@ export default function LocationPage() {
     dispatch(getEvents());
   }, []);
 
+  useEffect(() => {
+    dispatch(setPhotosThunk(id));
+  }, [photo]);
   return (
     <Container
       direction="column"
@@ -76,14 +82,18 @@ export default function LocationPage() {
           </Typography>
         </CardContent>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            height="250"
-            width="140"
-            image="https://vsegda-pomnim.com/uploads/posts/2022-04/1649124761_13-vsegda-pomnim-com-p-priroda-gor-foto-17.jpg"
-            alt="avatar"
-            sx={{ objectFit: 'contain' }}
-          />
+          <div className="row">
+            <Button onClick={() => console.log('addEvent')} variant="contained" sx={{ backgroundColor: '#689f38', color: 'white' }} style={{ marginLeft: '230px', marginBottom: '18px' }}>
+              +
+            </Button>
+            <form onSubmit={submitHandler} encType="multipart/form-data">
+              <input type="file" name="photos" onChange={changeHandler} multiple />
+              <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
+                Добавить
+              </Button>
+            </form>
+            <Courusel photoId={photoId} />
+          </div>
         </CardActionArea>
         <NavLink to="#">
           <AddIcon sx={{ color: 'black' }} />
