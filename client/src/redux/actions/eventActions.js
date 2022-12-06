@@ -15,6 +15,11 @@ export const getEvents = () => (dispatch) => {
     .catch((e) => console.log('error in getting Events', e));
 };
 
+export const getEventsByLocation = (id) => (dispatch) => {
+  axios.get(`/events/location/${id}`)
+    .then((res) => dispatch(setEvents(res.data)))
+    .catch((e) => console.log('error in getting Events', e));
+};
 export const submitEvent = (e, inputs, value, id) => (dispatch) => {
   e.preventDefault();
   axios.post(`/events/${id}`, {

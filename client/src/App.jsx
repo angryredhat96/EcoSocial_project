@@ -19,15 +19,15 @@ import NewLocationForm from './components/pages/NewLocationForm';
 
 function App() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getEvents());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getEvents());
+  // }, []);
 
   useEffect(() => {
     dispatch(checkUser());
   }, []);
   return (
-    <>
+    <Container>
       <NavBar />
       <Routes>
         <Route path="/" element={<MainPage />} />
@@ -41,7 +41,7 @@ function App() {
         <Route path="/log" element={<LogPage />} />
         <Route path="/profile/:id" element={<ProfilePage />} />
       </Routes>
-    </>
+    </Container>
   );
 }
 

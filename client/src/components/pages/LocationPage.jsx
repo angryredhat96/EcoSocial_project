@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import EventCard from '../ui/EventCard';
-import { getEvents } from '../../redux/actions/eventActions';
+import { getEvents, getEventsByLocation } from '../../redux/actions/eventActions';
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
 import { setPhotosThunk } from '../../redux/actions/photoActions';
 import Courusel from './Courusel';
@@ -48,7 +48,7 @@ export default function LocationPage() {
   }, []);
 
   useEffect(() => {
-    dispatch(getEvents());
+    dispatch(getEventsByLocation(id));
   }, []);
 
   useEffect(() => {
@@ -65,11 +65,11 @@ export default function LocationPage() {
     >
       <Card
         sx={{
-          maxWidth: 345,
+          maxWidth: 685,
           marginTop: '35px',
           display: 'flex',
           flexWrap: 'wrap',
-          justifyContent: 'center',
+          justifyContent: 'left',
           direction: 'column',
         }}
       >
@@ -83,21 +83,18 @@ export default function LocationPage() {
         </CardContent>
         <CardActionArea>
           <div className="row">
-            <Button onClick={() => console.log('addEvent')} variant="contained" sx={{ backgroundColor: '#689f38', color: 'white' }} style={{ marginLeft: '230px', marginBottom: '18px' }}>
-              +
-            </Button>
             <form onSubmit={submitHandler} encType="multipart/form-data">
-              <input type="file" name="photos" onChange={changeHandler} multiple />
-              <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
+              <input type="file" style={{ marginLeft: '10px' }} name="photos" onChange={changeHandler} multiple />
+              <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px', marginBottom: '5px' }}>
                 Добавить
               </Button>
             </form>
             <Courusel photoId={photoId} />
           </div>
         </CardActionArea>
-        <NavLink to="#">
+        {/* <NavLink to="#">
           <AddIcon sx={{ color: 'black' }} />
-        </NavLink>
+        </NavLink> */}
       </Card>
       <Button
         onClick={() => console.log('addEvent')}

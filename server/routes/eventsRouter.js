@@ -9,6 +9,14 @@ router.route('/')
     const allEvents = await Event.findAll({ order: [['createdAt', 'DESC']], include: User });
     res.json(allEvents);
   });
+
+router.route('/location/:id')
+  .get(async (req, res) => {
+    console.log('params', req.params);
+    const allEvents = await Event.findAll({ where: { placeId: +req.params.id }, order: [['createdAt', 'DESC']], include: User });
+    console.log('ALL', allEvents);
+    res.json(allEvents);
+  });
 router.route('/:id')
   .post(async (req, res) => {
     const {
