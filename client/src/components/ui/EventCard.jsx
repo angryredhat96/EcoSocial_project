@@ -28,13 +28,13 @@ export default function EventCard({ event, elId }) {
   // const counter = joiners.length();
   return (
     <Grid item md="4">
-      <Card sx={{ minWidth: 275, height: '220px' }}>
+      <Card sx={{ minWidth: 275, height: '210px' }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
             <IconButton
               sx={{ p: 0 }}
             >
-              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User.image?.slice(7)}`} />
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User?.image?.slice(7)}`} />
             </IconButton>
             {' '}
             событие от
@@ -56,7 +56,7 @@ export default function EventCard({ event, elId }) {
         <CardActions>
           {event?.userId == user?.id ? (
             <>
-              <Button onClick={() => dispatch(asyncDelete(elId))} variant="contained" sx={{ backgroundColor: '#ab003c' }} style={{ marginLeft: '10px', marginTop: '10px', marginBottom: '10px' }}>
+              <Button onClick={() => dispatch(asyncDelete(elId))} variant="contained" sx={{ backgroundColor: '#ab003c' }} style={{ marginLeft: '10px' }}>
                 Del
               </Button>
               <Button onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px' }}>

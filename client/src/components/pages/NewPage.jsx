@@ -36,7 +36,7 @@ export default function NewPage() {
     >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '15px',
+          width: 360, marginTop: '15px',
         }}
         className="container"
       >
@@ -44,7 +44,7 @@ export default function NewPage() {
           <Box
             component="form"
             sx={{
-              '& > :not(style)': { m: 1, width: '30ch' },
+              '& > :not(style)': { m: 1, width: '32ch' },
             }}
             noValidate
             autoComplete="off"

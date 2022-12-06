@@ -43,7 +43,7 @@ export default function LKPage() {
     >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '55px',
+          maxWidth: 345, marginTop: '35px',
         }}
         className="container"
       >

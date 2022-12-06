@@ -156,7 +156,7 @@ export default function MainPage() {
           id="map"
           className="map"
           style={{
-            width: '600px', height: '400px', marginLeft: 'auto', marginRight: 'auto',
+            width: '900px', height: '500px', marginLeft: 'auto', marginRight: 'auto',
           }}
         />
       </div>

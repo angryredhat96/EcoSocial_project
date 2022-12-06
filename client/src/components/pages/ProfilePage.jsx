@@ -26,7 +26,7 @@ export default function ProfilePage() {
     >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '55px',
+          maxWidth: 345, marginTop: '35px',
         }}
         className="container"
       >
@@ -34,8 +34,8 @@ export default function ProfilePage() {
           <div className="row">
             <CardMedia
               component="img"
-              height="140"
-              width="140"
+              height="270"
+              width="100"
               image={`http://localhost:3001/${fin?.image?.slice(7)}`}
               alt="avatar"
               style={{ borderRadius: '50%' }}
