@@ -9,7 +9,7 @@ router.post('/upload', fileMiddleware.single('avatar'), async (req, res) => {
   try {
     if (req.file) {
       await User.update(
-        { image: req?.file?.path },
+        { image: req?.file?.path.replace('public/lk/', '') },
         { where: { id: req.session.user.id } },
       );
       const ava = await User.findOne({ where: { id: req.session.user.id } });

@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 export default function LKPage() {
   const user = useSelector((store) => store.user);
   const [fileData, setFileData] = useState({ avatar: null });
-  const [avatar, setAvatar] = useState(user?.image || 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg');
+  const [avatar, setAvatar] = useState('Zaglushka.jpeg');
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -24,15 +24,15 @@ export default function LKPage() {
     setFileData({ [e.target.name]: e.target.files[0] });
   };
   useEffect(() => {
-    if (!user?.image) {
-      setAvatar('https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg');
-    } else {
-      setAvatar(user.image);
+    if (user?.image) {
+      setAvatar(user?.image);
     }
   }, [user]);
 
-  if (!user || !avatar) return null;
-  console.log(avatar, 'AVVVVVVVVV');
+  // if (!user || !avatar) return null;
+  // console.log(avatar, 'AVATAR');
+  // const avatarUrl = 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg';
+  // console.log('url', avatarUrl);
   return (
     <Container style={{
       color: 'orange',
@@ -53,13 +53,10 @@ export default function LKPage() {
               component="img"
               height="270"
               width="100"
-              image={avatar ? `http://localhost:3001/${avatar.slice(7)}` : 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg'}
+              image={`http://localhost:3001/lk/${avatar}`}
               alt="avatar"
               style={{ borderRadius: '50%' }}
             />
-            <Button onClick={() => console.log('changePhoto')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
-              Изменитььь
-            </Button>
           </div>
           <form onSubmit={submitHandler} encType="multipart/form-data">
             <input type="file" name="avatar" onChange={changeAmg} />
@@ -69,7 +66,7 @@ export default function LKPage() {
           </form>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
-              Имя юзера
+              {user.name}
             </Typography>
             <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
               ☘️
