@@ -24,6 +24,8 @@ export default function EventCard({ event, elId }) {
   const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User?.name.slice(1)}`;
   console.log(userName, 'userName');
   const user = useSelector((store) => store.user);
+  const counter = useSelector((store) => store.counter);
+  const count = counter.length;
   // const joiners = useSelector(((store) => store.joiners));
   // const counter = joiners.length();
   return (

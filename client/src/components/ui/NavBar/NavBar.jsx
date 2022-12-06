@@ -36,25 +36,22 @@ export default function NavBar() {
         }}
         >
           <Box>
-            <NavLink to="/" style={linkStyle}>Home</NavLink>
+            <NavLink to="/" style={linkStyle}>HOME</NavLink>
           </Box>
           {!user ? (
             <>
               <Box>
-                <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
+                <NavLink to="/reg" style={linkStyle}>REG</NavLink>
               </Box>
               <Box>
-                <NavLink to="/log" style={linkStyle}>Log</NavLink>
+                <NavLink to="/log" style={linkStyle}>LOG</NavLink>
               </Box>
-              <Typography variant="h6" sx={{ my: 2 }}>
-                xXx
-              </Typography>
             </>
           ) : (
             <>
-              <Box>
+              {/* <Box>
                 <NavLink to="/lk" style={linkStyle}>LK</NavLink>
-              </Box>
+              </Box> */}
               <Box>
                 <Button
                   variant="text"
@@ -64,7 +61,7 @@ export default function NavBar() {
                   }}
                   style={linkStyle}
                 >
-                  LogOut
+                  LOGOUT
 
                 </Button>
               </Box>
@@ -73,7 +70,7 @@ export default function NavBar() {
                   onClick={() => navigate('/lk')}
                   sx={{ p: 0 }}
                 >
-                  <Avatar alt="kakoytochel" src={`http://localhost:3001/${user?.image?.slice(7)}`} />
+                  <Avatar alt="kakoytochel" src={`http://localhost:3001/${user?.image}`} />
                 </IconButton>
                 {/* <Typography variant="h6" sx={{ my: 2 }}>
                     {user.image} */}

@@ -14,9 +14,14 @@ export default function ProfilePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const thisUser = useSelector((store) => store.users);
+  const counter = useSelector((store) => store.counter);
+  const count = counter.length;
+  console.log('counter', count);
   console.log(thisUser, 'THISUSER');
   const fin = thisUser.find((el) => el.id == id);
   console.log('hospadi', fin);
+  const [plus, setPlus] = React.useState(0);
+
   return (
     <Container sx={{
       display: 'flex',
@@ -40,9 +45,6 @@ export default function ProfilePage() {
               alt="avatar"
               style={{ borderRadius: '50%' }}
             />
-            <Button onClick={() => console.log('changePhoto')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
-              Изменить
-            </Button>
           </div>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
@@ -50,6 +52,7 @@ export default function ProfilePage() {
             </Typography>
             <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
               ☘️
+              {count}
             </Typography>
           </CardContent>
         </CardActionArea>
