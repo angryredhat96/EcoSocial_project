@@ -12,10 +12,11 @@ export default function MainPage() {
   const [newInput, setNewInput] = useState('');
   const navigate = useNavigate();
   const places = useSelector((store) => store.place);
-  const placeCoords = useSelector((store) => store.coordinates);
+  // const placeCoords = useSelector((store) => store.coordinates);
   const [myMap, setMyMap] = useState(null);
   // const [coordinates, setCoordinates] = useState([]);
   const dispatch = useDispatch();
+  // console.log('photo', places[0].Images);
 
   useEffect(() => {
     function init() {
@@ -42,12 +43,14 @@ export default function MainPage() {
   useEffect(() => {
     // console.log(places, 'places');
     places?.forEach((el) => {
+      // console.log(el.Images, 'elImages');
       const coordinates = [el.latitude, el.longitude];
       // console.log('coordinates', coordinates);
       const myPlacemarkWithContent = new ymaps.Placemark(coordinates, {
         balloonContent: `
                   <div class="balloon">
                     <div class="balloon__title">${el.title}</div>
+                    <img src="http://localhost:3001/vid/${el.Images[0]?.image}" alt="..." height="100" width="150"> </br>
                     <a href="/location/${el.id}">Подробнее</a>
                   </div>
                   `,
