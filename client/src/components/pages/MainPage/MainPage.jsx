@@ -12,10 +12,22 @@ export default function MainPage() {
   const [newInput, setNewInput] = useState('');
   const navigate = useNavigate();
   const places = useSelector((store) => store.place);
-  const placeCoords = useSelector((store) => store.coordinates);
+  // const placeCoords = useSelector((store) => store.coordinates);
   const [myMap, setMyMap] = useState(null);
   // const [coordinates, setCoordinates] = useState([]);
   const dispatch = useDispatch();
+  // console.log('photo', places[0].Images);
+
+  const dateString = places.forEach((el) => el.Events?.forEach((event) => event?.date));
+  console.log(dateString, 'dateString');
+  // const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+  const dt = new Date(dateString);
+  console.log('dt', dt);
+  const now = new Date();
+  console.log('now', now);
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf();
+  const status = !(dt < today);
+  console.log('status', status);
 
   useEffect(() => {
     function init() {
@@ -42,23 +54,31 @@ export default function MainPage() {
   useEffect(() => {
     // console.log(places, 'places');
     places?.forEach((el) => {
+      // console.log(el.Images, 'elImages');
       const coordinates = [el.latitude, el.longitude];
       // console.log('coordinates', coordinates);
       const myPlacemarkWithContent = new ymaps.Placemark(coordinates, {
         balloonContent: `
                   <div class="balloon">
                     <div class="balloon__title">${el.title}</div>
-                    <a href="/location/${el.id}">Подробнее</a>
+                    <img src="http://localhost:3001/vid/${el.Images[0]?.image}" alt="..." height="100" width="150"> </br>
+                    <button type="button" id="detailsButton">Подробнее</button>
                   </div>
                   `,
       }, {
         iconLayout: 'default#imageWithContent', // Необходимо указать данный тип макета.
-        iconImageHref: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png', // Своё изображение иконки метки.
+        iconImageHref: status ? 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png' : 'https://cdn-icons-png.flaticon.com/128/450/450016.png', // Своё изображение иконки метки.
         iconImageSize: [40, 40], // Размеры метки.
         iconImageOffset: [-24, -24], // Смещение левого верхнего угла иконки относительно, её "ножки" (точки привязки).
         iconContentOffset: [15, 15], // Смещение слоя с содержимым относительно слоя с картинкой.
       });
       myMap?.geoObjects.add(myPlacemarkWithContent);
+      myMap?.geoObjects.events.add('balloonopen', () => {
+        document.getElementById('detailsButton').addEventListener('click', () => {
+          navigate(`/location/${el.id}`);
+          myMap?.balloon.close();
+        });
+      });
     });
   }, [places]);
 
@@ -125,10 +145,10 @@ export default function MainPage() {
             value={newInput}
             onChange={(e) => setNewInput(e.target.value)}
           /> */}
-          {/* <Button onClick={() => console.log('add')} variant="contained" sx={{ backgroundColor: '#689f38', maxWidth: '10px' }} style={{ marginLeft: '15px', marginTop: '18px' }}>
+        {/* <Button onClick={() => console.log('add')} variant="contained" sx={{ backgroundColor: '#689f38', maxWidth: '10px' }} style={{ marginLeft: '15px', marginTop: '18px' }}>
             +
           </Button> */}
-          {/* <AddIcon onClick={() => console.log('add')} /> */}
+        {/* <AddIcon onClick={() => console.log('add')} /> */}
         {/* </div> */}
       </Box>
       <div style={{ alignContent: 'center', marginTop: '25px' }}>
@@ -136,7 +156,7 @@ export default function MainPage() {
           id="map"
           className="map"
           style={{
-            width: '600px', height: '400px', marginLeft: 'auto', marginRight: 'auto',
+            width: '900px', height: '500px', marginLeft: 'auto', marginRight: 'auto',
           }}
         />
       </div>

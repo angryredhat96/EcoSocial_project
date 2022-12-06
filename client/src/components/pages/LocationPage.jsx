@@ -16,6 +16,7 @@ import { getEvents, getEventsByLocation } from '../../redux/actions/eventActions
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
 import { setPhotosThunk } from '../../redux/actions/photoActions';
 import Courusel from './Courusel';
+import { getAllUsers } from '../../redux/actions/allusersActions';
 
 export default function LocationPage() {
   const dispatch = useDispatch();
@@ -24,10 +25,12 @@ export default function LocationPage() {
   const selector = useSelector((store) => store.onePlace);
   // console.log('item', selector);
   const events = useSelector((store) => store.events);
+  const allUsers = useSelector((store) => store.users);
   const [fileData, setFileData] = useState({ photos: null });
   const [photo, setPhoto] = useState([]);
   const photoId = useSelector((store) => store.photos);
-  console.log(photoId, 'PHOOOOOOOOOOO');
+  // console.log(photoId, 'PHOOOOOOOOOOO');
+  console.log(events, 'events');
 
   const changeHandler = (e) => {
     setFileData(e.target.files);
@@ -46,6 +49,10 @@ export default function LocationPage() {
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
   }, []);
+
+  // useEffect(() => {
+  //   dispatch(getAllUsers());
+  // }, []);
 
   useEffect(() => {
     dispatch(getEventsByLocation(id));
@@ -96,18 +103,25 @@ export default function LocationPage() {
           <AddIcon sx={{ color: 'black' }} />
         </NavLink> */}
       </Card>
-      <Button
-        onClick={() => console.log('addEvent')}
-        variant="contained"
-        component={Link}
-        to={`/new/${id}`}
-        sx={{
-          backgroundColor: '#689f38', marginLeft: '20px', height: '30px', mt: '470px',
-        }}
+      <Container sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+      }}
       >
-        Добавить ивент
-      </Button>
-      <Grid container spacing={6} sx={{ mt: '30px' }}>
+        <Button
+          onClick={() => console.log('addEvent')}
+          variant="contained"
+          component={Link}
+          to={`/new/${id}`}
+          sx={{
+            backgroundColor: '#689f38', marginLeft: '20px', height: '30px', mt: '15px',
+          }}
+        >
+          Добавить ивент
+        </Button>
+      </Container>
+      <Grid container spacing={6} sx={{ mt: '15px' }}>
         {events?.map((el) => (
           <EventCard
             key={el.id}

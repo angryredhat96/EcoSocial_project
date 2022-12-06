@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  AppBar, Box, Toolbar, Typography, Button,
+  AppBar, Box, Toolbar, Typography, Button, IconButton, Avatar,
 } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import { Container } from '@mui/system';
+import { Container } from '@mui/system';
 import { logoutUser } from '../../../redux/actions/userActions';
 
 const linkStyle = {
@@ -47,7 +47,7 @@ export default function NavBar() {
                 <NavLink to="/log" style={linkStyle}>Log</NavLink>
               </Box>
               <Typography variant="h6" sx={{ my: 2 }}>
-                Hi, stranger
+                xXx
               </Typography>
             </>
           ) : (
@@ -69,11 +69,18 @@ export default function NavBar() {
                 </Button>
               </Box>
               <Box>
-                <Typography variant="h6" sx={{ my: 2 }}>
-                  Hi,
-                  {' '}
-                  {user.name}
-                </Typography>
+                <IconButton
+                  onClick={() => navigate('/lk')}
+                  sx={{ p: 0 }}
+                >
+                  <Avatar alt="kakoytochel" src={`http://localhost:3001/${user?.image?.slice(7)}`} />
+                </IconButton>
+                {/* <Typography variant="h6" sx={{ my: 2 }}>
+                    {user.image} */}
+                {/* Hi,
+                    {' '}
+                    {user.name} */}
+                {/* </Typography> */}
               </Box>
             </>
           )}

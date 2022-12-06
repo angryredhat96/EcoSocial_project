@@ -17,6 +17,7 @@ import { getEvents } from './redux/actions/eventActions';
 
 import NewLocationForm from './components/pages/NewLocationForm';
 import PrivateRoute from './components/ui/PrivateRoute';
+import { getAllUsers } from './redux/actions/allusersActions';
 
 function App() {
   const user = useSelector((store) => store.user);
@@ -27,9 +28,10 @@ function App() {
 
   useEffect(() => {
     dispatch(checkUser());
+    dispatch(getAllUsers());
   }, []);
   return (
-    <Container>
+    <>
       <NavBar />
       <Routes>
         <Route path="/" element={<MainPage />} />
@@ -47,7 +49,7 @@ function App() {
           <Route path="/profile/:id" element={<ProfilePage />} />
         </Route>
       </Routes>
-    </Container>
+    </>
   );
 }
 

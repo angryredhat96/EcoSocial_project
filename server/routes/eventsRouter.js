@@ -12,9 +12,9 @@ router.route('/')
 
 router.route('/location/:id')
   .get(async (req, res) => {
-    console.log('params', req.params);
+    // console.log('params', req.params);
     const allEvents = await Event.findAll({ where: { placeId: +req.params.id }, order: [['createdAt', 'DESC']], include: User });
-    console.log('ALL', allEvents);
+    // console.log('ALL', allEvents);
     res.json(allEvents);
   });
 router.route('/:id')
@@ -22,7 +22,7 @@ router.route('/:id')
     const {
       title, description, date, tgLink,
     } = req.body;
-    console.log('reqqqq', req.params);
+    // console.log('reqqqq', req.params);
     const newEvent = await Event.create({
       title, description, date: new Date(date), tgLink, userId: req.session.user.id, placeId: req.params.id,
     });
@@ -48,7 +48,7 @@ router.delete('/:id', async (req, res) => {
     await Event.destroy({ where: { id } });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });
@@ -61,12 +61,12 @@ router.patch('/:id/edit', async (req, res) => {
     const fin = {
       title, description, date: new Date(date), tgLink, userId: req.session.user.id,
     };
-    console.log(fin, ' fin');
+    // console.log(fin, ' fin');
     const { id } = req.params;
     await Event.update(fin, { where: { id } });
     res.sendStatus(200);
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.sendStatus(500);
   }
 });

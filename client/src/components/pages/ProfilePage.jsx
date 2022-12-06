@@ -6,11 +6,17 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, Button } from '@mui/material';
 import { Container } from '@mui/system';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getAllUsers } from '../../redux/actions/allusersActions';
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
-
+  const { id } = useParams();
+  const thisUser = useSelector((store) => store.users);
+  console.log(thisUser, 'THISUSER');
+  const fin = thisUser.find((el) => el.id == id);
+  console.log('hospadi', fin);
   return (
     <Container sx={{
       display: 'flex',
@@ -20,7 +26,7 @@ export default function ProfilePage() {
     >
       <Card
         sx={{
-          maxWidth: 345, marginTop: '55px',
+          maxWidth: 345, marginTop: '35px',
         }}
         className="container"
       >
@@ -28,9 +34,9 @@ export default function ProfilePage() {
           <div className="row">
             <CardMedia
               component="img"
-              height="140"
-              width="140"
-              image="https://avatars.mds.yandex.net/get-mpic/5259100/img_id5021518703231911464.jpeg/orig"
+              height="270"
+              width="100"
+              image={`http://localhost:3001/${fin?.image?.slice(7)}`}
               alt="avatar"
               style={{ borderRadius: '50%' }}
             />
@@ -40,7 +46,7 @@ export default function ProfilePage() {
           </div>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
-              Имя юзера
+              {fin?.name}
             </Typography>
             <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
               ☘️
