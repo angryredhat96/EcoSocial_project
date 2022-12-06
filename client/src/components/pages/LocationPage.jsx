@@ -45,13 +45,15 @@ export default function LocationPage() {
   console.log(photo, 'QQQQQQQQ');
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
-    dispatch(setPhotosThunk(id));
   }, []);
 
   useEffect(() => {
     dispatch(getEvents());
   }, []);
 
+  useEffect(() => {
+    dispatch(setPhotosThunk(id));
+  }, [photo]);
   return (
     <Container
       direction="column"
@@ -90,15 +92,7 @@ export default function LocationPage() {
                 Добавить
               </Button>
             </form>
-            {photoId && photoId?.map((el) => <Courusel ph={el} key={el.id} />)}
-            <CardMedia
-              component="img"
-              height="250"
-              width="140"
-              image="https://vsegda-pomnim.com/uploads/posts/2022-04/1649124761_13-vsegda-pomnim-com-p-priroda-gor-foto-17.jpg"
-              alt="avatar"
-              sx={{ objectFit: 'contain' }}
-            />
+            <Courusel photoId={photoId} />
           </div>
         </CardActionArea>
         <NavLink to="#">
