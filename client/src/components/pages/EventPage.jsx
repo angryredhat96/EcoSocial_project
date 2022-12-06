@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import {
   CardActionArea, Button, Grid, CardActions,
   Container,
+  IconButton,
+  Avatar,
 } from '@mui/material';
 import { Box } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
@@ -59,6 +61,12 @@ export default function EventPage() {
       >
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
+            <IconButton
+              sx={{ p: 0 }}
+            >
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User.image?.slice(7)}`} />
+            </IconButton>
+            {' '}
             событие от
             {' '}
             {userName}
