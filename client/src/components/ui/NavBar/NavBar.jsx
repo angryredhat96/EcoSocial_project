@@ -74,7 +74,8 @@ export default function NavBar() {
                   onClick={() => navigate('/lk')}
                   sx={{ p: 0 }}
                 >
-                  <Avatar alt="kakoytochel" src={`http://localhost:3001/lk/${user?.image}`} />
+                  {user?.image
+                    ? <Avatar alt="kakoytochel" src={`http://localhost:3001/lk/${user?.image}`} /> : <Avatar alt="kakoytochel" />}
                 </IconButton>
                 {/* <Typography variant="h6" sx={{ my: 2 }}>
                     {user.image} */}

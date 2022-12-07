@@ -6,6 +6,7 @@ export default function PrivatedRoute({
   redirectPath,
   children,
 }) {
+  console.log(isAllowed);
   if (!isAllowed) {
     return <Navigate to={redirectPath} replace />;
   }
