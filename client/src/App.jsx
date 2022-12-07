@@ -30,6 +30,7 @@ function App() {
     dispatch(checkUser());
     dispatch(getAllUsers());
   }, []);
+  console.log(user);
   return (
     <>
       <NavBar />
@@ -39,15 +40,16 @@ function App() {
           <Route path="/reg" element={<RegPage />} />
           <Route path="/log" element={<LogPage />} />
         </Route>
-        <Route element={<PrivateRoute isAllowed={user?.id} />}>
-          <Route path="/lk" element={<LKPage />} />
-          <Route path="/location/:id" element={<LocationPage />} />
-          <Route path="/location/add" element={<NewLocationForm />} />
-          <Route path="/event/:id" element={<EventPage />} />
-          <Route path="/event/:id/edit" element={<EditPage />} />
-          <Route path="/new/:id" element={<NewPage />} />
-          <Route path="/profile/:id" element={<ProfilePage />} />
-        </Route>
+
+        {/* <Route element={<PrivateRoute isAllowed={user?.id} redirectPath="/" />}> */}
+        <Route path="/lk" element={<LKPage />} />
+        <Route path="/location/:id" element={<LocationPage />} />
+        <Route path="/location/add" element={<NewLocationForm />} />
+        <Route path="/event/:id" element={<EventPage />} />
+        <Route path="/event/:id/edit" element={<EditPage />} />
+        <Route path="/new/:id" element={<NewPage />} />
+        <Route path="/profile/:id" element={<ProfilePage />} />
+        {/* </Route> */}
       </Routes>
     </>
   );

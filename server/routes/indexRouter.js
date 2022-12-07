@@ -9,8 +9,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/places', async (req, res) => {
-  const addPlace = await Place.create(req.body);
-  console.log(addPlace);
+  const addPlacePrev = await Place.create(req.body);
+  const addPlace = await Place.findOne({ where: { id: addPlacePrev.id }, include: [Image, Event] });
+  // console.log(addPlace);
   res.json(addPlace);
 });
 

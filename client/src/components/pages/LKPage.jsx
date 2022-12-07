@@ -63,7 +63,7 @@ export default function LKPage() {
           </form>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
-              {user.name}
+              {user?.name}
             </Typography>
             <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
               ☘️
