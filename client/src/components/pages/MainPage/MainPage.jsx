@@ -54,7 +54,7 @@ export default function MainPage() {
   useEffect(() => {
     // console.log(places, 'places');
     places?.forEach((el) => {
-      // console.log(el.Images, 'elImages');
+      console.log(el.Images, 'elImages');
       const coordinates = [el.latitude, el.longitude];
       // console.log('coordinates', coordinates);
       const myPlacemarkWithContent = new ymaps.Placemark(coordinates, {

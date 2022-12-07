@@ -1,5 +1,5 @@
 import {
-  SET_ALLUSERS,
+  SET_ALLUSERS, SET_USER_ID,
 } from '../types';
 
 export default function allusersReducer(state = [], action) {

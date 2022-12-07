@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  SET_ALLUSERS,
+  SET_ALLUSERS, SET_USER_ID,
 } from '../types';
 
 export const setAllusers = (users) => ({ type: SET_ALLUSERS, payload: users });

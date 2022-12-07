@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   AppBar, Box, Toolbar, Typography, Button, IconButton, Avatar,
 } from '@mui/material';
@@ -18,6 +18,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -73,7 +74,7 @@ export default function NavBar() {
                   onClick={() => navigate('/lk')}
                   sx={{ p: 0 }}
                 >
-                  <Avatar alt="kakoytochel" src={`http://localhost:3001/${user?.image?.slice(7)}`} />
+                  <Avatar alt="kakoytochel" src={`http://localhost:3001/lk/${user?.image}`} />
                 </IconButton>
                 {/* <Typography variant="h6" sx={{ my: 2 }}>
                     {user.image} */}
