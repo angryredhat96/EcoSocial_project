@@ -2,9 +2,9 @@
   display: none !important;
 }
 
-[class*="ground-pane"] {
+/* [class*="ground-pane"] {
   filter: grayscale(1);
-}
+} */
 
 .balloon__title {
   color: red;

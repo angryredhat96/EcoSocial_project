@@ -19,23 +19,22 @@ import {
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { asyncEdit } from '../../redux/actions/eventActions';
-import { addJoiner, getJoiners } from '../../redux/actions/joinersActions';
+import {
+  getEventCounter, getProfileCounter, setCounter, submitCounter,
+} from '../../redux/actions/counterAction';
 
 export default function EventPage() {
   const { id } = useParams();
   const event = useSelector((store) => store.events).find((el) => el.id == id);
   const userName = ` ${event?.User?.name[0].toUpperCase()}${event?.User.name.slice(1)}`;
   const user = useSelector((store) => store.user);
+  const counter = useSelector((store) => store.counter);
+  const count = counter.length;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allUser = useSelector((store) => store.users);
   console.log(allUser, 'MUUUUUUUUU');
-  // const joiners = useSelector(((store) => store.joiners));
-  // const counter = joiners.length();
-
-  // useEffect(() => {
-  //   dispatch(getJoiners());
-  // }, []);
+  // const [plus, setPlus] = React.useState(0);
 
   const linkStyle = {
     textDecoration: 'none',
@@ -43,6 +42,10 @@ export default function EventPage() {
     fontFamily: 'Monospace',
     fontSize: 14,
   };
+
+  useEffect(() => {
+    dispatch(getEventCounter(id));
+  }, [count]);
 
   return (
     <Container sx={{
@@ -64,7 +67,7 @@ export default function EventPage() {
             <IconButton
               sx={{ p: 0 }}
             >
-              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User.image?.slice(7)}`} />
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/lk/${event?.User.image}`} />
             </IconButton>
             {' '}
             событие от
@@ -76,7 +79,6 @@ export default function EventPage() {
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
             {event.description}
-            s
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
             {dayjs(event.date).format('DD.MM.YY')}
@@ -87,7 +89,7 @@ export default function EventPage() {
           <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
             🖖
             {' '}
-            counter
+            {count}
           </Typography>
         </CardContent>
         <CardActionArea>
@@ -97,7 +99,7 @@ export default function EventPage() {
             justifyContent: 'center',
           }}
           >
-            <Button onClick={() => dispatch(addJoiner())} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
+            <Button onClick={() => dispatch(submitCounter(id))} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
               Join
             </Button>
             {event?.userId == user?.id ? (

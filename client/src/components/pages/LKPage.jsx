@@ -7,13 +7,17 @@ import { CardActionArea, Button } from '@mui/material';
 import { Container } from '@mui/system';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { getLKCounter } from '../../redux/actions/counterAction';
+import { getUserId } from '../../redux/actions/oneUserActions';
 import { setImageThunk } from '../../redux/actions/imageActions';
 
 export default function LKPage() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const [fileData, setFileData] = useState({ avatar: null });
   const [avatar, setAvatar] = useState('Zaglushka.jpeg');
-  const dispatch = useDispatch();
+  const counter = useSelector((store) => store.counter);
+  const count = counter.length;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -32,6 +36,10 @@ export default function LKPage() {
       setAvatar(user?.image);
     }
   }, [user]);
+
+  useEffect(() => {
+    dispatch(getLKCounter());
+  }, []);
 
   return (
     <Container style={{
@@ -70,6 +78,8 @@ export default function LKPage() {
             </Typography>
             <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
               ☘️
+              {' '}
+              {count}
             </Typography>
           </CardContent>
         </CardActionArea>
