@@ -11,4 +11,3 @@ export default function placeReducer(state = [], action) {
       return state;
   }
 }
-// state.images: [...state.images, ...payload],

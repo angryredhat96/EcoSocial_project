@@ -10,12 +10,13 @@ router.post('/addphoto/:id', vidMiddleware.array('photos', 10), async (req, res)
   (req.files)?.forEach((element) => {
     image.push(element.filename);
   });
-  const photo = await Image.bulkCreate(
+  await Image.bulkCreate(
     image.map((str) => ({
       image: str,
       placeId: id,
     })),
   );
+  const photo = await Image.findAll({ where: { placeId: id } });
   res.json(photo);
 });
 
