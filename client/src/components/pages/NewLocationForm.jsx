@@ -23,7 +23,7 @@ export default function NewLocationForm() {
     <Container>
       <Card
         sx={{
-          maxWidth: 345, marginTop: '15px', justifyContent: 'center', position: 'absolute', top: '10%', left: '40%',
+          maxWidth: 360, marginTop: '15px',
         }}
         className="container"
       >
@@ -31,7 +31,7 @@ export default function NewLocationForm() {
           <Box
             component="form"
             sx={{
-              '& > :not(style)': { m: 1, width: '36ch' },
+              '& > :not(style)': { m: 1, width: '32ch' },
             }}
             noValidate
             autoComplete="off"
