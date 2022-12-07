@@ -3,13 +3,13 @@ import coordsReducer from './reducer/coordsReducer';
 import errorReducer from './reducer/errorReducer';
 import errorRegReducer from './reducer/errorRegReducer';
 import eventsReducer from './reducer/eventsReducer';
-import joinerReducer from './reducer/joinersReducer';
 import oneEventReducer from './reducer/oneEventReducer';
 import onePlaceReducer from './reducer/onePlaceReducer';
 import placeReducer from './reducer/placeReducer';
 import userReducer from './reducer/userReducer';
 import photoReducer from './reducer/photoReducer';
 import allusersReducer from './reducer/allusersReducer';
+import counterReducer from './reducer/counterReducer';
 import oneReducer from './reducer/oneReducer';
 
 const store = configureStore({
@@ -22,9 +22,9 @@ const store = configureStore({
     place: placeReducer,
     onePlace: onePlaceReducer,
     photos: photoReducer,
-    joiners: joinerReducer,
     coordinates: coordsReducer,
     users: allusersReducer,
+    counter: counterReducer,
     oneUser: oneReducer,
   },
 });

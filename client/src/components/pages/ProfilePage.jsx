@@ -9,14 +9,23 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAllUsers } from '../../redux/actions/allusersActions';
+import { getProfileCounter } from '../../redux/actions/counterAction';
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const thisUser = useSelector((store) => store.users);
+  const counter = useSelector((store) => store.counter);
+  const count = counter.length;
+  console.log('counter', count);
   console.log(thisUser, 'THISUSER');
   const fin = thisUser.find((el) => el.id == id);
   console.log('hospadi', fin);
+
+  useEffect(() => {
+    dispatch(getProfileCounter(id));
+  }, []);
+
   return (
     <Container sx={{
       display: 'flex',
@@ -36,13 +45,10 @@ export default function ProfilePage() {
               component="img"
               height="270"
               width="100"
-              image={`http://localhost:3001/${fin?.image?.slice(7)}`}
+              image={`http://localhost:3001/lk/${fin?.image}`}
               alt="avatar"
               style={{ borderRadius: '50%' }}
             />
-            <Button onClick={() => console.log('changePhoto')} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
-              Изменить
-            </Button>
           </div>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">
@@ -50,6 +56,7 @@ export default function ProfilePage() {
             </Typography>
             <Typography gutterBottom variant="h5" style={{ color: '#689f38' }} component="div">
               ☘️
+              {count}
             </Typography>
           </CardContent>
         </CardActionArea>

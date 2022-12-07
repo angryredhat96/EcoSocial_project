@@ -36,39 +36,23 @@ export default function NavBar() {
           justifyContent: 'space-evenly',
         }}
         >
-          <Box>
-            <NavLink to="/" style={linkStyle}>Home</NavLink>
-          </Box>
           {!user ? (
             <>
               <Box>
-                <NavLink to="/reg" style={linkStyle}>Reg</NavLink>
+                <NavLink to="/" style={linkStyle}>HOME</NavLink>
               </Box>
               <Box>
-                <NavLink to="/log" style={linkStyle}>Log</NavLink>
+                <NavLink to="/reg" style={linkStyle}>REG</NavLink>
               </Box>
-              <Typography variant="h6" sx={{ my: 2 }}>
-                xXx
-              </Typography>
+              <Box>
+                <NavLink to="/log" style={linkStyle}>LOG</NavLink>
+              </Box>
             </>
           ) : (
             <>
-              <Box>
+              {/* <Box>
                 <NavLink to="/lk" style={linkStyle}>LK</NavLink>
-              </Box>
-              <Box>
-                <Button
-                  variant="text"
-                  onClick={() => {
-                    dispatch(logoutUser());
-                    navigate('/');
-                  }}
-                  style={linkStyle}
-                >
-                  LogOut
-
-                </Button>
-              </Box>
+              </Box> */}
               <Box>
                 <IconButton
                   onClick={() => navigate('/lk')}
@@ -83,6 +67,22 @@ export default function NavBar() {
                     {' '}
                     {user.name} */}
                 {/* </Typography> */}
+              </Box>
+              <Box>
+                <NavLink to="/" style={linkStyle}>HOME</NavLink>
+              </Box>
+              <Box>
+                <Button
+                  variant="text"
+                  onClick={() => {
+                    dispatch(logoutUser());
+                    navigate('/');
+                  }}
+                  style={linkStyle}
+                >
+                  LOGOUT
+
+                </Button>
               </Box>
             </>
           )}
