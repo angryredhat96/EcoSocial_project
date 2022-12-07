@@ -1,7 +1,7 @@
 const express = require('express');
 const fileMiddleware = require('../middleware/file');
 // const vidMiddleware = require('../middleware/vidFale');
-const { User, Image } = require('../db/models');
+const { User } = require('../db/models');
 
 const router = express.Router();
 

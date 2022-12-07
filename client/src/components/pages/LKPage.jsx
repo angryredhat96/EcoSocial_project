@@ -6,7 +6,8 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea, Button } from '@mui/material';
 import { Container } from '@mui/system';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserId } from '../../redux/actions/oneUserActions';
 
 export default function LKPage() {
   const user = useSelector((store) => store.user);
@@ -29,10 +30,6 @@ export default function LKPage() {
     }
   }, [user]);
 
-  // if (!user || !avatar) return null;
-  // console.log(avatar, 'AVATAR');
-  // const avatarUrl = 'https://st2.depositphotos.com/6809168/11747/v/950/depositphotos_117473348-stock-illustration-student-icon-isolated.jpg';
-  // console.log('url', avatarUrl);
   return (
     <Container style={{
       color: 'orange',
