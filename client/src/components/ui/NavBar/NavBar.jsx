@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   AppBar, Box, Toolbar, Typography, Button, IconButton, Avatar,
 } from '@mui/material';
@@ -18,6 +18,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar

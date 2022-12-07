@@ -18,16 +18,16 @@ export default function MainPage() {
   const dispatch = useDispatch();
   // console.log('photo', places[0].Images);
 
-  const dateString = places.forEach((el) => el.Events?.forEach((event) => event?.date));
-  console.log(dateString, 'dateString');
-  // const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
-  const dt = new Date(dateString);
-  console.log('dt', dt);
-  const now = new Date();
-  console.log('now', now);
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf();
-  const status = !(dt < today);
-  console.log('status', status);
+  // const dateString = places.forEach((el) => el.Events?.forEach((event) => event?.date));
+  // console.log(dateString, 'dateString');
+  // // const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
+  // const dt = new Date(dateString);
+  // console.log('dt', dt);
+  // const now = new Date();
+  // console.log('now', now);
+  // const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf();
+  // const status = !(dt < today);
+  // console.log('status', status);
 
   useEffect(() => {
     function init() {
@@ -54,7 +54,7 @@ export default function MainPage() {
   useEffect(() => {
     // console.log(places, 'places');
     places?.forEach((el) => {
-      // console.log(el.Images, 'elImages');
+      console.log(el.Images, 'elImages');
       const coordinates = [el.latitude, el.longitude];
       // console.log('coordinates', coordinates);
       const myPlacemarkWithContent = new ymaps.Placemark(coordinates, {
@@ -62,19 +62,19 @@ export default function MainPage() {
                   <div class="balloon">
                     <div class="balloon__title">${el.title}</div>
                     <img src="http://localhost:3001/vid/${el.Images[0]?.image}" alt="..." height="100" width="150"> </br>
-                    <button type="button" id="detailsButton">Подробнее</button>
+                    <button type="button" id=${el.id}>Подробнее</button>
                   </div>
                   `,
       }, {
         iconLayout: 'default#imageWithContent', // Необходимо указать данный тип макета.
-        iconImageHref: status ? 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png' : 'https://cdn-icons-png.flaticon.com/128/450/450016.png', // Своё изображение иконки метки.
+        iconImageHref: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png', // Своё изображение иконки метки.
         iconImageSize: [40, 40], // Размеры метки.
         iconImageOffset: [-24, -24], // Смещение левого верхнего угла иконки относительно, её "ножки" (точки привязки).
         iconContentOffset: [15, 15], // Смещение слоя с содержимым относительно слоя с картинкой.
       });
       myMap?.geoObjects.add(myPlacemarkWithContent);
       myMap?.geoObjects.events.add('balloonopen', () => {
-        document.getElementById('detailsButton').addEventListener('click', () => {
+        document.getElementById(`${el.id}`)?.addEventListener('click', () => {
           navigate(`/location/${el.id}`);
           myMap?.balloon.close();
         });

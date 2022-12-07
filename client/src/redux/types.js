@@ -30,3 +30,4 @@ export const SET_COORDS = 'SET_COORDS';
 
 // Все юзеры
 export const SET_ALLUSERS = 'SET_ALLUSERS';
+export const SET_USER_ID = 'SET_USER_ID';

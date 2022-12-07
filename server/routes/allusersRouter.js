@@ -11,4 +11,9 @@ router.route('/')
     console.log('wtffff', allUsers);
   });
 
+router.get('/oneuser', async (req, res) => {
+  const oneUser = await User.findByPk(req.session.user.id);
+  res.json(oneUser);
+});
+
 module.exports = router;

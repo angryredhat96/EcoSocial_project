@@ -10,6 +10,7 @@ import userReducer from './reducer/userReducer';
 import photoReducer from './reducer/photoReducer';
 import allusersReducer from './reducer/allusersReducer';
 import counterReducer from './reducer/counterReducer';
+import oneReducer from './reducer/oneReducer';
 
 const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ const store = configureStore({
     coordinates: coordsReducer,
     users: allusersReducer,
     counter: counterReducer,
+    oneUser: oneReducer,
   },
 });
 
