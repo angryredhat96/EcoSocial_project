@@ -36,7 +36,7 @@ export default function ProfilePage() {
               component="img"
               height="270"
               width="100"
-              image={`http://localhost:3001/${fin?.image?.slice(7)}`}
+              image={`http://localhost:3001/lk/${fin?.image?.slice(7)}`}
               alt="avatar"
               style={{ borderRadius: '50%' }}
             />

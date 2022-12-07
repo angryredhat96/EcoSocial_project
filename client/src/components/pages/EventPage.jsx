@@ -64,7 +64,7 @@ export default function EventPage() {
             <IconButton
               sx={{ p: 0 }}
             >
-              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User.image?.slice(7)}`} />
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/lk/${event?.User.image}`} />
             </IconButton>
             {' '}
             событие от
