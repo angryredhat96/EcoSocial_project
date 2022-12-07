@@ -26,17 +26,16 @@ export default function EventCard({ event, elId }) {
   const user = useSelector((store) => store.user);
   const counter = useSelector((store) => store.counter);
   const count = counter.length;
-  // const joiners = useSelector(((store) => store.joiners));
-  // const counter = joiners.length();
+
   return (
     <Grid item md="4">
-      <Card sx={{ minWidth: 275, height: '210px' }}>
+      <Card sx={{ minWidth: 275, height: '180px' }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
             <IconButton
               sx={{ p: 0 }}
             >
-              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User?.image?.slice(7)}`} />
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/lk/${event?.User?.image}`} />
             </IconButton>
             {' '}
             событие от
@@ -49,11 +48,11 @@ export default function EventCard({ event, elId }) {
           <Typography variant="body2">
             {dayjs(event.date).format('DD.MM.YY')}
           </Typography>
-          <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
+          {/* <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
             🖖
             {' '}
             counter
-          </Typography>
+          </Typography> */}
         </CardContent>
         <CardActions>
           {event?.userId == user?.id ? (

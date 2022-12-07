@@ -19,8 +19,9 @@ import {
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { asyncEdit } from '../../redux/actions/eventActions';
-import { addJoiner, getJoiners } from '../../redux/actions/joinersActions';
-import { setCounter, submitCounter } from '../../redux/actions/counterAction';
+import {
+  getEventCounter, getProfileCounter, setCounter, submitCounter,
+} from '../../redux/actions/counterAction';
 
 export default function EventPage() {
   const { id } = useParams();
@@ -33,14 +34,8 @@ export default function EventPage() {
   const navigate = useNavigate();
   const allUser = useSelector((store) => store.users);
   console.log(allUser, 'MUUUUUUUUU');
-  const [plus, setPlus] = React.useState(0);
+  // const [plus, setPlus] = React.useState(0);
 
-  // const joiners = useSelector(((store) => store.joiners));
-  // const counter = joiners.length();
-
-  // useEffect(() => {
-  //   dispatch(getJoiners());
-  // }, []);
 
   const linkStyle = {
     textDecoration: 'none',
@@ -69,7 +64,7 @@ export default function EventPage() {
             <IconButton
               sx={{ p: 0 }}
             >
-              <Avatar alt="kakoytochel" src={`http://localhost:3001/${event?.User.image?.slice(7)}`} />
+              <Avatar alt="kakoytochel" src={`http://localhost:3001/lk/${event?.User.image}`} />
             </IconButton>
             {' '}
             событие от
@@ -101,7 +96,7 @@ export default function EventPage() {
             justifyContent: 'center',
           }}
           >
-            <Button onClick={() => dispatch(submitCounter(setPlus(plus)))} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
+            <Button onClick={() => dispatch(submitCounter(id))} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
               Join
             </Button>
             {event?.userId == user?.id ? (

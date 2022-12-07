@@ -3,7 +3,6 @@ import coordsReducer from './reducer/coordsReducer';
 import errorReducer from './reducer/errorReducer';
 import errorRegReducer from './reducer/errorRegReducer';
 import eventsReducer from './reducer/eventsReducer';
-import joinerReducer from './reducer/joinersReducer';
 import oneEventReducer from './reducer/oneEventReducer';
 import onePlaceReducer from './reducer/onePlaceReducer';
 import placeReducer from './reducer/placeReducer';
@@ -22,7 +21,6 @@ const store = configureStore({
     place: placeReducer,
     onePlace: onePlaceReducer,
     photos: photoReducer,
-    joiners: joinerReducer,
     coordinates: coordsReducer,
     users: allusersReducer,
     counter: counterReducer,

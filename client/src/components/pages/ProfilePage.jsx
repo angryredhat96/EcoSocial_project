@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAllUsers } from '../../redux/actions/allusersActions';
+import { getProfileCounter } from '../../redux/actions/counterAction';
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
@@ -20,7 +21,6 @@ export default function ProfilePage() {
   console.log(thisUser, 'THISUSER');
   const fin = thisUser.find((el) => el.id == id);
   console.log('hospadi', fin);
-  const [plus, setPlus] = React.useState(0);
 
   return (
     <Container sx={{
@@ -41,7 +41,7 @@ export default function ProfilePage() {
               component="img"
               height="270"
               width="100"
-              image={`http://localhost:3001/${fin?.image?.slice(7)}`}
+              image={`http://localhost:3001/lk/${fin?.image}`}
               alt="avatar"
               style={{ borderRadius: '50%' }}
             />
