@@ -44,6 +44,10 @@ export default function EventPage() {
     fontSize: 14,
   };
 
+  useEffect(() => {
+    dispatch(getEventCounter(id));
+  }, []);
+
   return (
     <Container sx={{
       display: 'flex',

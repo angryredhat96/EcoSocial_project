@@ -4,8 +4,8 @@ import { ADD_COUNTER, SET_COUNTER } from '../types';
 export const setCounter = (counter) => ({ type: SET_COUNTER, payload: counter });
 export const addCounter = (addCount) => ({ type: ADD_COUNTER, payload: addCount });
 
-export const getLKCounter = (id) => (dispatch) => {
-  axios.get(`/counter/lkevents/${id}`)
+export const getLKCounter = () => (dispatch) => {
+  axios.get('/counter/lkevents')
     .then((res) => dispatch(setCounter(res.data)))
     .catch((e) => console.log('error in getting LkCounter', e));
 };

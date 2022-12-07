@@ -22,6 +22,10 @@ export default function ProfilePage() {
   const fin = thisUser.find((el) => el.id == id);
   console.log('hospadi', fin);
 
+  useEffect(() => {
+    dispatch(getProfileCounter(id));
+  }, []);
+
   return (
     <Container sx={{
       display: 'flex',

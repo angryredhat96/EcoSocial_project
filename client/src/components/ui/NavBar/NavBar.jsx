@@ -36,11 +36,11 @@ export default function NavBar() {
           justifyContent: 'space-evenly',
         }}
         >
-          <Box>
-            <NavLink to="/" style={linkStyle}>HOME</NavLink>
-          </Box>
           {!user ? (
             <>
+              <Box>
+                <NavLink to="/" style={linkStyle}>HOME</NavLink>
+              </Box>
               <Box>
                 <NavLink to="/reg" style={linkStyle}>REG</NavLink>
               </Box>
@@ -54,19 +54,6 @@ export default function NavBar() {
                 <NavLink to="/lk" style={linkStyle}>LK</NavLink>
               </Box> */}
               <Box>
-                <Button
-                  variant="text"
-                  onClick={() => {
-                    dispatch(logoutUser());
-                    navigate('/');
-                  }}
-                  style={linkStyle}
-                >
-                  LOGOUT
-
-                </Button>
-              </Box>
-              <Box>
                 <IconButton
                   onClick={() => navigate('/lk')}
                   sx={{ p: 0 }}
@@ -79,6 +66,22 @@ export default function NavBar() {
                     {' '}
                     {user.name} */}
                 {/* </Typography> */}
+              </Box>
+              <Box>
+                <NavLink to="/" style={linkStyle}>HOME</NavLink>
+              </Box>
+              <Box>
+                <Button
+                  variant="text"
+                  onClick={() => {
+                    dispatch(logoutUser());
+                    navigate('/');
+                  }}
+                  style={linkStyle}
+                >
+                  LOGOUT
+
+                </Button>
               </Box>
             </>
           )}

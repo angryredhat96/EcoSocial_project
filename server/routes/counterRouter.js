@@ -9,19 +9,17 @@ router.route('/event/:id')
     res.json(eventParticipants);
   })
   .post(async (req, res) => {
-    const newParticipant = await Subscriber.findOrCreate({
-      userId: req.session.user.id, eventId: req.params.id,
-    });
+    const newParticipant = await Subscriber.findOrCreate({ where: { userId: req.session.user.id, eventId: req.params.id } });
     res.json(newParticipant);
   });
 
-router.route('/lkevents/:id')
+router.route('/lkevents')
   .get(async (req, res) => {
-    const lkEvents = await Subscriber.findAll({ where: { userId: req.session.user.id }, include: Event, order: [['date', 'DESC']] });
+    const lkEvents = await Subscriber.findAll({ where: { userId: req.session.user.id }, include: Event, order: [['createdAt', 'DESC']] });
     res.json(lkEvents);
   });
 
-  router.route('/profileevents/:id')
+router.route('/profileevents/:id')
   .get(async (req, res) => {
     const profileEvents = await Subscriber.findAll({ where: { userId: req.params.id }, include: Event });
     res.json(profileEvents);

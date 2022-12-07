@@ -12,6 +12,7 @@ import { getUserId } from '../../redux/actions/oneUserActions';
 
 export default function LKPage() {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const [fileData, setFileData] = useState({ avatar: null });
   const [avatar, setAvatar] = useState('Zaglushka.jpeg');
   const counter = useSelector((store) => store.counter);
@@ -32,6 +33,10 @@ export default function LKPage() {
       setAvatar(user?.image);
     }
   }, [user]);
+
+  useEffect(() => {
+    dispatch(getLKCounter());
+  }, []);
 
   return (
     <Container style={{
