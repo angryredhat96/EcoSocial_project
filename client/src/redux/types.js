@@ -5,6 +5,7 @@ export const USER_FETCHING = 'USER_FETCHING';
 export const SET_EMPTY_USER = 'SET_EMPTY_USER';
 export const REG_FAILED = 'REG_FAILED';
 export const LOG_FAILED = 'LOG_FAILED';
+export const CHANGE_USER_IMAGE = 'CHANGE_USER_IMAGE';
 
 // EVENTS
 export const SET_EVENTS = 'SET_EVENTS';
