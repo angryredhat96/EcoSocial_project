@@ -36,7 +36,6 @@ export default function EventPage() {
   console.log(allUser, 'MUUUUUUUUU');
   // const [plus, setPlus] = React.useState(0);
 
-
   const linkStyle = {
     textDecoration: 'none',
     color: 'gray',
@@ -46,7 +45,7 @@ export default function EventPage() {
 
   useEffect(() => {
     dispatch(getEventCounter(id));
-  }, []);
+  }, [count]);
 
   return (
     <Container sx={{
