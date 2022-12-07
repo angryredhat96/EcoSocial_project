@@ -24,7 +24,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     dispatch(getProfileCounter(id));
-  }, []);
+  }, [count]);
 
   return (
     <Container sx={{

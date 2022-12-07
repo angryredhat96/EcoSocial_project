@@ -39,7 +39,7 @@ export default function LKPage() {
 
   useEffect(() => {
     dispatch(getLKCounter());
-  }, []);
+  }, [count]);
 
   return (
     <Container style={{
