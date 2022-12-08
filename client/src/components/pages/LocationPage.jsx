@@ -13,7 +13,7 @@ import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
 import DoneIcon from '@mui/icons-material/Done';
 import EventCard from '../ui/EventCard';
-import { getEvents, getEventsByLocation } from '../../redux/actions/eventActions';
+import { getEventsByLocation } from '../../redux/actions/eventActions';
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
 import { setPhotosThunk } from '../../redux/actions/photoActions';
 import Courusel from './Courusel';
@@ -55,15 +55,16 @@ export default function LocationPage() {
 
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
+    dispatch(getEventsByLocation(id));
   }, []);
 
   // useEffect(() => {
   //   dispatch(getAllUsers());
   // }, []);
 
-  useEffect(() => {
-    dispatch(getEventsByLocation(id));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getEventsByLocation(id));
+  // }, []);
 
   useEffect(() => {
     dispatch(setPhotosThunk(id));
@@ -132,8 +133,8 @@ export default function LocationPage() {
           <AddIcon />
         </IconButton>
       </Container>
-      <Grid container spacing={6} sx={{ mt: '15px', mb: '10px' }}>
-        {events?.map((el) => (
+      <Grid container spacing={6} sx={{ mt: '15px' }}>
+        {events && events?.map((el) => (
           <EventCard
             key={el.id}
             elId={el.id}
