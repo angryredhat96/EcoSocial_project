@@ -58,7 +58,7 @@ export default function EventPage() {
       && (
       <Card
         sx={{
-          maxWidth: 300, minWidth: 300, marginTop: '15px',
+          width: 500, marginTop: '100px', height: '300px',
         }}
         className="container"
       >
