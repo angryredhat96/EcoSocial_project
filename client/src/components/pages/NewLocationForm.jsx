@@ -36,10 +36,38 @@ export default function NewLocationForm() {
             noValidate
             autoComplete="off"
           >
-            <TextField value={coordinates[0]} id="outlined-basic" name="latitude" variant="outlined" disabled />
-            <TextField value={coordinates[1]} id="outlined-basic" name="longitude" variant="outlined" disabled />
-            <TextField value={inputs.title} onChange={changeHandler} id="outlined-basic" name="title" label="Название места" variant="outlined" />
-            <TextField value={inputs.description} onChange={changeHandler} id="outlined-basic" name="description" label="Описание места" variant="outlined" />
+            <TextField value={coordinates[0]} id="outlined-basic" sx={{ display: 'none' }} name="latitude" variant="outlined" disabled />
+            <TextField value={coordinates[1]} id="outlined-basic" sx={{ display: 'none' }} name="longitude" variant="outlined" disabled />
+            <TextField
+              value={inputs.title}
+              onChange={changeHandler}
+              id="outlined-basic"
+              name="title"
+              label="Название места"
+              variant="outlined"
+              color="success"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
+            />
+            <TextField
+              value={inputs.description}
+              onChange={changeHandler}
+              id="outlined-basic"
+              name="description"
+              label="Описание места"
+              variant="outlined"
+              color="success"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
+            />
           </Box>
         </CardContent>
         <CardActionArea>
@@ -52,9 +80,9 @@ export default function NewLocationForm() {
               });
               navigate('/');
             }}
-            variant="contained"
-            sx={{ backgroundColor: '#689f38', color: 'white' }}
+            variant="outlined"
             style={{ marginLeft: '125px', marginBottom: '18px' }}
+            color="success"
           >
             Создать
           </Button>

@@ -18,6 +18,8 @@ import {
   Link, NavLink, useNavigate, useParams,
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import DirectionsRunOutlinedIcon from '@mui/icons-material/DirectionsRunOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { asyncEdit } from '../../redux/actions/eventActions';
 import {
   getEventCounter, getProfileCounter, setCounter, submitCounter,
@@ -58,7 +60,7 @@ export default function EventPage() {
       && (
       <Card
         sx={{
-          maxWidth: 300, minWidth: 300, marginTop: '15px',
+          width: 500, marginTop: '100px', height: '400px',
         }}
         className="container"
       >
@@ -74,36 +76,39 @@ export default function EventPage() {
             {' '}
             {userName}
           </Typography>
-          <Typography gutterBottom variant="h4" style={{ color: '#689f38' }} component="div">
+          <Typography gutterBottom variant="h4" style={{ color: '#689f38', marginTop: '10px' }} component="div">
             {event.title}
           </Typography>
-          <Typography gutterBottom variant="h7" component="div">
+          <Typography gutterBottom variant="h7" component="div" style={{ marginTop: '10px' }}>
             {event.description}
           </Typography>
-          <Typography gutterBottom variant="h7" component="div">
+          <Typography gutterBottom variant="h7" component="div" style={{ marginTop: '10px' }}>
             {dayjs(event.date).format('DD.MM.YY')}
           </Typography>
           <Box>
-            <a href={`${event.tgLink}`} target="_blank" label="text" rel="noreferrer"><TelegramIcon /></a>
+            <a href={`${event.tgLink}`} style={{ marginTop: '10px' }} target="_blank" label="text" rel="noreferrer"><TelegramIcon /></a>
           </Box>
-          <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
+          <Typography gutterBottom variant="h7" style={{ color: '#689f38', marginTop: '10px' }} component="div">
             🖖
             {' '}
             {count}
           </Typography>
         </CardContent>
-        <CardActionArea>
-          <Container sx={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'center',
-          }}
+        <CardActionArea
+          sx={{ marginBottom: '1px' }}
+        >
+          <Container
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+            }}
           >
-            <Button onClick={() => dispatch(submitCounter(id))} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
-              Join
-            </Button>
+            <IconButton onClick={() => dispatch(submitCounter(id))} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ margin: '10px' }}>
+              <DirectionsRunOutlinedIcon />
+            </IconButton>
             {event?.userId == user?.id ? (
-              <Button
+              <IconButton
                 onClick={() => {
                 // dispatch(asyncEdit(event));
                   navigate(`/event/${event.id}/edit`);
@@ -112,8 +117,8 @@ export default function EventPage() {
                 sx={{ backgroundColor: '#689f38' }}
                 style={{ marginTop: '10px', marginBottom: '10px', marginRight: '10px' }}
               >
-                Edit
-              </Button>
+                <EditOutlinedIcon />
+              </IconButton>
             ) : (
               <div />
             )}

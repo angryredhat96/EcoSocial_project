@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import dayjs from 'dayjs';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { Avatar, Grid, IconButton } from '@mui/material';
 import { asyncDelete, setEvent } from '../../redux/actions/eventActions';
 
@@ -57,17 +59,17 @@ export default function EventCard({ event, elId }) {
         <CardActions>
           {event?.userId == user?.id ? (
             <>
-              <Button onClick={() => dispatch(asyncDelete(elId))} variant="contained" sx={{ backgroundColor: '#ab003c' }} style={{ marginLeft: '10px' }}>
-                Del
-              </Button>
-              <Button onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px' }}>
-                Инфо
-              </Button>
+              <IconButton onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" style={{ marginLeft: '5px', color: 'green' }}>
+                <InfoOutlinedIcon />
+              </IconButton>
+              <IconButton onClick={() => dispatch(asyncDelete(elId))} variant="contained" style={{ marginLeft: '230px', color: '#ab003c' }}>
+                <DeleteOutlineOutlinedIcon />
+              </IconButton>
             </>
           ) : (
-            <Button onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '15px' }}>
-              Инфо
-            </Button>
+            <IconButton onClick={() => dispatch(setEvent(event))} component={Link} to={`/event/${event.id}`} variant="contained" style={{ marginLeft: '5px', color: 'green' }}>
+              <InfoOutlinedIcon />
+            </IconButton>
           )}
         </CardActions>
       </Card>

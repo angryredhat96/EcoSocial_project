@@ -5,6 +5,10 @@ import {
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '@mui/system';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import HomeIcon from '@mui/icons-material/Home';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { logoutUser } from '../../../redux/actions/userActions';
 
 const linkStyle = {
@@ -39,13 +43,13 @@ export default function NavBar() {
           {!user ? (
             <>
               <Box>
-                <NavLink to="/" style={linkStyle}>HOME</NavLink>
+                <NavLink to="/" style={linkStyle}><IconButton style={linkStyle}><HomeIcon /></IconButton></NavLink>
               </Box>
               <Box>
-                <NavLink to="/reg" style={linkStyle}>REG</NavLink>
+                <NavLink to="/log" style={linkStyle}><IconButton style={linkStyle}><HowToRegIcon /></IconButton></NavLink>
               </Box>
               <Box>
-                <NavLink to="/log" style={linkStyle}>LOG</NavLink>
+                <NavLink to="/reg" style={linkStyle}><IconButton style={linkStyle}><PersonAddIcon /></IconButton></NavLink>
               </Box>
             </>
           ) : (
@@ -55,6 +59,7 @@ export default function NavBar() {
               </Box> */}
               <Box>
                 <IconButton
+                  style={linkStyle}
                   onClick={() => navigate('/lk')}
                   sx={{ p: 0 }}
                 >
@@ -69,10 +74,10 @@ export default function NavBar() {
                 {/* </Typography> */}
               </Box>
               <Box>
-                <NavLink to="/" style={linkStyle}>HOME</NavLink>
+                <NavLink to="/" style={linkStyle}><IconButton style={linkStyle}><HomeIcon /></IconButton></NavLink>
               </Box>
               <Box>
-                <Button
+                <IconButton
                   variant="text"
                   onClick={() => {
                     dispatch(logoutUser());
@@ -80,9 +85,9 @@ export default function NavBar() {
                   }}
                   style={linkStyle}
                 >
-                  LOGOUT
+                  <LogoutIcon />
 
-                </Button>
+                </IconButton>
               </Box>
             </>
           )}
