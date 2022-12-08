@@ -24,10 +24,7 @@ export default function LKPage() {
     e.preventDefault();
     const data = new FormData();
     data.append('avatar', fileData.avatar);
-    // axios.post('/api/v1/upload', data)
-    // dispatch({ type: CHANGE_USER_IMAGE, payload: res.data });
     dispatch(setImageThunk(data));
-    // .then((res) => setAvatar(res.data));
   };
   const changeAmg = (e) => {
     setFileData({ [e.target.name]: e.target.files[0] });

@@ -12,20 +12,24 @@ export default function MainPage() {
   const [newInput, setNewInput] = useState('');
   const navigate = useNavigate();
   const places = useSelector((store) => store.place);
+  const [flag, setFlag] = useState(false);
   // const placeCoords = useSelector((store) => store.coordinates);
   const [myMap, setMyMap] = useState(null);
   // const [coordinates, setCoordinates] = useState([]);
   const dispatch = useDispatch();
-  // console.log('photo', places[0].Images);
+  console.log('places', places);
 
   // const dateString = places.forEach((el) => el.Events?.forEach((event) => event?.date));
   // console.log(dateString, 'dateString');
   // // const pattern = /(\d{2})\.(\d{2})\.(\d{4})/;
   // const dt = new Date(dateString);
   // console.log('dt', dt);
-  // const now = new Date();
+
+  const now = new Date();
   // console.log('now', now);
-  // const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()).valueOf();
+  // const something = places.filter((el) => el.Events?.length > 0 && new Date(el.Events[0].date) > today);
+  // console.log('something', something);
   // const status = !(dt < today);
   // console.log('status', status);
 
@@ -62,12 +66,12 @@ export default function MainPage() {
                   <div class="balloon">
                     <div class="balloon__title">${el.title}</div>
                     <img src="http://localhost:3001/vid/${el.Images[0]?.image}" alt="..." height="100" width="150"> </br>
-                    <button type="button" id=${el.id}>Подробнее</button>
+                    <button type="button" class="btn sixth" id=${el.id}>Подробнее</button>
                   </div>
                   `,
       }, {
         iconLayout: 'default#imageWithContent', // Необходимо указать данный тип макета.
-        iconImageHref: 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png', // Своё изображение иконки метки.
+        iconImageHref: el.Events?.length !== 0 && el.Events.some((event) => new Date(event.date) >= today) ? 'https://cdn-icons-png.flaticon.com/512/2776/2776067.png' : 'https://cdn-icons-png.flaticon.com/512/5868/5868069.png', // Своё изображение иконки метки.
         iconImageSize: [40, 40], // Размеры метки.
         iconImageOffset: [-24, -24], // Смещение левого верхнего угла иконки относительно, её "ножки" (точки привязки).
         iconContentOffset: [15, 15], // Смещение слоя с содержимым относительно слоя с картинкой.
@@ -88,13 +92,8 @@ export default function MainPage() {
       dispatch(setCoords(coords));
       // console.log(placeCoords, 'placeCoords');
       myMap.balloon.open(coords, {
-        contentHeader: 'Событие!',
-        contentBody: '<p>Кто-то щелкнул по карте.</p>'
-                    + `<p>Координаты щелчка: ${[
-                      coords[0].toPrecision(6),
-                      coords[1].toPrecision(6),
-                    ].join(', ')}</p>`,
-        contentFooter: '<button type="button" id="addPlaceButton">Добавить место</button>',
+        contentHeader: 'Вы можете добавить новое место здесь!',
+        contentFooter: '<button type="button" class="btn sixth" id="addPlaceButton">Добавить место</button>',
       });
       setTimeout(() => {
         document.getElementById('addPlaceButton').addEventListener('click', () => {

@@ -18,6 +18,7 @@ import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
 import { setPhotosThunk } from '../../redux/actions/photoActions';
 import Courusel from './Courusel';
 import { getAllUsers } from '../../redux/actions/allusersActions';
+import { setPlaceImageThunk } from '../../redux/actions/onePlaceImages';
 
 const linkStyle = {
   textDecoration: 'none',
@@ -36,9 +37,8 @@ export default function LocationPage() {
   const events = useSelector((store) => store.events);
   const allUsers = useSelector((store) => store.users);
   const [fileData, setFileData] = useState({ photos: null });
-  const [photo, setPhoto] = useState([]);
-  const photoId = useSelector((store) => store.photos);
-  // console.log(photoId, 'PHOOOOOOOOOOO');
+  const photoId = useSelector((store) => store.onePlace);
+  console.log(photoId, 'PHOOOOOOOOOOO');
   console.log(events, 'events');
 
   const changeHandler = (e) => {
@@ -50,11 +50,9 @@ export default function LocationPage() {
     e.preventDefault();
     const data = new FormData(e.target);
     data.append('photos', fileData);
-    await axios.post(`/api/photos/addphoto/${id}`, data)
-      .then((res) => setPhoto(res.data?.image));
+    dispatch(setPlaceImageThunk(data, id));
   };
 
-  console.log(photo, 'QQQQQQQQ');
   useEffect(() => {
     dispatch(getOnePlaceThunk(id));
   }, []);
@@ -69,7 +67,7 @@ export default function LocationPage() {
 
   useEffect(() => {
     dispatch(setPhotosThunk(id));
-  }, [photo]);
+  }, []);
   return (
     <Container
       direction="column"
@@ -107,7 +105,7 @@ export default function LocationPage() {
                 <DoneIcon />
               </IconButton>
             </form>
-            <Courusel photoId={photoId} />
+            <Courusel photoId={photoId?.Images} />
           </div>
         </CardActionArea>
         {/* <NavLink to="#">
