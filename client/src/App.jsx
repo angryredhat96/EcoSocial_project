@@ -22,9 +22,9 @@ import { getAllUsers } from './redux/actions/allusersActions';
 function App() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getEvents());
-  // }, []);
+  useEffect(() => {
+    dispatch(getEvents());
+  }, []);
 
   useEffect(() => {
     dispatch(checkUser());

@@ -15,7 +15,7 @@ router.route('/event/:id')
 
 router.route('/lkevents')
   .get(async (req, res) => {
-    const lkEvents = await Subscriber.findAll({ where: { userId: req.session.user.id }, include: Event, order: [['createdAt', 'DESC']] });
+    const lkEvents = await Subscriber.findAll({ where: { userId: req.session.user.id }, include: Event });
     res.json(lkEvents);
   });
 

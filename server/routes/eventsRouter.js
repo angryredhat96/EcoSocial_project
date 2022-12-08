@@ -46,6 +46,7 @@ router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     await Event.destroy({ where: { id } });
+    // await Subscriber.destroy({ where: { eventId: req.params.id, userId: req.session.user.id } });
     res.sendStatus(200);
   } catch (error) {
     // console.log(error);

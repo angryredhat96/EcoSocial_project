@@ -3,10 +3,11 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { CardActionArea, Button } from '@mui/material';
+import { CardActionArea, Button, IconButton } from '@mui/material';
 import { Container } from '@mui/system';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import DoneIcon from '@mui/icons-material/Done';
 import { getLKCounter } from '../../redux/actions/counterAction';
 import { getUserId } from '../../redux/actions/oneUserActions';
 import { setImageThunk } from '../../redux/actions/imageActions';
@@ -36,7 +37,7 @@ export default function LKPage() {
 
   useEffect(() => {
     dispatch(getLKCounter());
-  }, []);
+  }, [count]);
 
   return (
     <Container style={{
@@ -60,14 +61,14 @@ export default function LKPage() {
               width="100"
               image={`http://localhost:3001/lk/${avatar}`}
               alt="avatar"
-              style={{ borderRadius: '50%' }}
+              style={{ borderRadius: '50%', marginTop: '10px' }}
             />
           </div>
           <form onSubmit={submitHandler} encType="multipart/form-data">
             <input type="file" name="avatar" onChange={changeAmg} />
-            <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px' }}>
-              Изменить
-            </Button>
+            <IconButton type="submit" variant="contained" style={{ marginLeft: '130px', marginTop: '1px' }}>
+              <DoneIcon />
+            </IconButton>
           </form>
           <CardContent>
             <Typography gutterBottom variant="h4" component="div">

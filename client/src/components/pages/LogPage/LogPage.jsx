@@ -1,6 +1,7 @@
 import {
-  Button, Grid, Paper, Stack, TextField,
+  Button, Card, CardActionArea, CardContent, Grid, Paper, Stack, TextField, Typography,
 } from '@mui/material';
+import { Box, Container } from '@mui/system';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -21,9 +22,10 @@ export default function LogPage() {
         <Paper
           elevation={6}
           style={{
-            width: '600px',
-            height: '400px',
+            width: '400px',
+            height: '300px',
             marginTop: '40px',
+            borderRadius: '3%',
           }}
         >
           <Stack
@@ -34,8 +36,8 @@ export default function LogPage() {
             }}
             direction="row"
           >
-            <h2 style={{ fontFamily: 'Gill Sans, sans-serif' }}>Authorization</h2>
-            <div style={{ visibility: error.visible, color: 'red' }}>
+            <h2 style={{ fontFamily: 'Gill Sans, sans-serif', marginTop: '15px' }}>Авторизация</h2>
+            <div style={{ visibility: error.visible, color: '#ab003c' }}>
               {error.message}
             </div>
             <TextField
@@ -44,20 +46,33 @@ export default function LogPage() {
               id="standard-basic"
               label="Email"
               variant="standard"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
             />
             <TextField
               name="password"
               type="password"
               id="standard-basic"
-              label="Password"
+              label="Пароль"
               variant="standard"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
             />
             <Button
               type="submit"
               variant="outlined"
               style={{ marginTop: '20px' }}
+              color="success"
             >
-              Auth
+              OK
             </Button>
             {' '}
           </Stack>
@@ -66,3 +81,84 @@ export default function LogPage() {
     </form>
   );
 }
+//     <form onSubmit={(e) => {
+//       e.preventDefault();
+//       dispatch(loginUser(Object.fromEntries(new FormData(e.target))));
+//       navigate('/');
+//     }}
+//     >
+//       <Container sx={{
+//         display: 'flex',
+//         flexWrap: 'wrap',
+//         justifyContent: 'center',
+//       }}
+//       >
+//         <Card
+//           sx={{
+//             width: 360,
+//             marginTop: '15px',
+//             display: 'flex',
+//             flexWrap: 'wrap',
+//             justifyContent: 'center',
+//           }}
+//           className="container"
+//         >
+//           <Typography gutterBottom variant="h4" sx={{ fontFamily: 'Gill Sans, sans-serif', marginTop: '10px', fontWeight: 'bold' }} component="div">
+//             Авторизация
+//           </Typography>
+//           <Typography gutterBottom variant="h6" sx={{ visibility: error.visible, color: 'red' }} component="div">
+//             {error.message}
+//           </Typography>
+//           <CardContent>
+//             <Box
+//               component="form"
+//               sx={{
+//                 '& > :not(style)': { m: 1, width: '32ch' },
+//               }}
+//               noValidate
+//               autoComplete="on"
+//             >
+//               <TextField
+//                 sx={{
+//                   '& .MuiInputLabel-root': { color: 'green' },
+//                   '& .MuiOutlinedInput-root': {
+//                     '& > fieldset': { borderColor: 'green' },
+//                   },
+//                 }}
+//                 color="success"
+//                 id="outlined-basic"
+//                 name="password"
+//                 type="email"
+//                 label="Email"
+//                 variant="outlined"
+//               />
+//               <TextField
+//                 sx={{
+//                   '& .MuiInputLabel-root': { color: 'green' },
+//                   '& .MuiOutlinedInput-root': {
+//                     '& > fieldset': { borderColor: 'green' },
+//                   },
+//                 }}
+//                 color="success"
+//                 id="outlined-basic"
+//                 name="password"
+//                 type="password"
+//                 label="Пароль"
+//                 variant="outlined"
+//               />
+//             </Box>
+//           </CardContent>
+//           <Button
+//             variant="outlined"
+//             color="success"
+//             sx={{
+//               marginBottom: '10px',
+//             }}
+//           >
+//             OK
+//           </Button>
+//         </Card>
+//       </Container>
+//     </form>
+//   );
+// }

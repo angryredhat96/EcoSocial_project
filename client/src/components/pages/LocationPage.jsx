@@ -5,12 +5,13 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Link, NavLink, useParams } from 'react-router-dom';
 import {
-  CardActionArea, Button, Grid,
+  CardActionArea, Button, Grid, IconButton,
 } from '@mui/material';
 import { Container } from '@mui/system';
 import { useDispatch, useSelector } from 'react-redux';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
+import DoneIcon from '@mui/icons-material/Done';
 import EventCard from '../ui/EventCard';
 import { getEventsByLocation } from '../../redux/actions/eventActions';
 import { getOnePlaceThunk } from '../../redux/actions/onePlaceAction';
@@ -18,6 +19,14 @@ import { setPhotosThunk } from '../../redux/actions/photoActions';
 import Courusel from './Courusel';
 import { getAllUsers } from '../../redux/actions/allusersActions';
 import { setPlaceImageThunk } from '../../redux/actions/onePlaceImages';
+
+const linkStyle = {
+  textDecoration: 'none',
+  color: 'grey',
+  fontFamily: 'Monospace',
+  fontSize: 14,
+  backgroundColor: 'white',
+};
 
 export default function LocationPage() {
   const dispatch = useDispatch();
@@ -73,6 +82,8 @@ export default function LocationPage() {
         sx={{
           maxWidth: 685,
           marginTop: '35px',
+          paddingLeft: '7px',
+          paddingRight: '7px',
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'left',
@@ -91,9 +102,9 @@ export default function LocationPage() {
           <div className="row">
             <form onSubmit={submitHandler} encType="multipart/form-data">
               <input type="file" style={{ marginLeft: '10px' }} name="photos" onChange={changeHandler} multiple />
-              <Button type="submit" variant="contained" sx={{ backgroundColor: '#689f38' }} style={{ marginLeft: '230px', marginTop: '18px', marginBottom: '5px' }}>
-                Добавить
-              </Button>
+              <IconButton type="submit" variant="contained" style={{ marginLeft: '230px', marginTop: '18px', marginBottom: '10px' }}>
+                <DoneIcon />
+              </IconButton>
             </form>
             <Courusel photoId={photoId?.Images} />
           </div>
@@ -108,17 +119,19 @@ export default function LocationPage() {
         justifyContent: 'center',
       }}
       >
-        <Button
+        <IconButton
           onClick={() => console.log('addEvent')}
-          variant="contained"
+          variant="outlined"
+          color="success"
+          style={linkStyle}
           component={Link}
           to={`/new/${id}`}
           sx={{
-            backgroundColor: '#689f38', marginLeft: '20px', height: '30px', mt: '15px',
+            marginLeft: '20px', mt: '15px',
           }}
         >
-          Добавить ивент
-        </Button>
+          <AddIcon />
+        </IconButton>
       </Container>
       <Grid container spacing={6} sx={{ mt: '15px' }}>
         {events && events?.map((el) => (
