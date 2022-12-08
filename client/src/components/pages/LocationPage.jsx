@@ -99,7 +99,9 @@ export default function LocationPage() {
           </Typography>
         </CardContent>
         <CardActionArea>
-          <div className="row">
+          <div
+            className="row"
+          >
             <form onSubmit={submitHandler} encType="multipart/form-data">
               <input type="file" style={{ marginLeft: '10px' }} name="photos" onChange={changeHandler} multiple />
               <IconButton type="submit" variant="contained" style={{ marginLeft: '230px', marginTop: '18px', marginBottom: '10px' }}>
