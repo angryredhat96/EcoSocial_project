@@ -47,7 +47,7 @@ export default function ProfilePage() {
               width="100"
               image={`http://localhost:3001/lk/${fin?.image}`}
               alt="avatar"
-              style={{ borderRadius: '50%' }}
+              style={{ borderRadius: '50%', marginTop: '10px' }}
             />
           </div>
           <CardContent>

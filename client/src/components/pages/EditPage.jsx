@@ -85,16 +85,37 @@ export default function EditPage() {
             //   });
             // }}
           >
-            <TextField value={inputs.title} onChange={changeHandler} id="outlined-basic" name="title" label="Название ивента" variant="outlined" />
+            <TextField
+              value={inputs.title}
+              onChange={changeHandler}
+              id="outlined-basic"
+              name="title"
+              label="Событие"
+              variant="outlined"
+              color="success"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
+            />
             <TextField
               value={inputs.description}
               onChange={changeHandler}
               name="description"
-              label="Описание ивента "
+              label="Описание"
               id="outlined-multiline-static"
               multiline
               rows={6}
               defaultValue="Default Value"
+              color="success"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Stack spacing={3}>
@@ -107,7 +128,21 @@ export default function EditPage() {
                 />
               </Stack>
             </LocalizationProvider>
-            <TextField value={inputs.tgLink} onChange={changeHandler} id="outlined-basic" name="tgLink" label="ТГ линк" variant="outlined" />
+            <TextField
+              value={inputs.tgLink}
+              onChange={changeHandler}
+              id="outlined-basic"
+              name="tgLink"
+              label="TG-link"
+              variant="outlined"
+              color="success"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
+            />
           </Box>
         </CardContent>
         <CardActionArea sx={{
@@ -117,10 +152,11 @@ export default function EditPage() {
         }}
         >
           <Button
-            // type="submit"
+            type="submit"
             onClick={clickHandler}
-            variant="contained"
-            sx={{ backgroundColor: '#689f38', color: 'white', marginBottom: '10px' }}
+            variant="outlined"
+            sx={{ marginBottom: '10px' }}
+            color="success"
           >
             Изменить
           </Button>

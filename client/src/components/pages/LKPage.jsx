@@ -61,7 +61,7 @@ export default function LKPage() {
               width="100"
               image={`http://localhost:3001/lk/${avatar}`}
               alt="avatar"
-              style={{ borderRadius: '50%' }}
+              style={{ borderRadius: '50%', marginTop: '10px' }}
             />
           </div>
           <form onSubmit={submitHandler} encType="multipart/form-data">

@@ -12,66 +12,86 @@ export default function RegPage() {
   const error = useSelector((store) => store.erroreg);
   const navigate = useNavigate();
   return (
-      <form onSubmit={(e) => {
-        e.preventDefault();
-        dispatch(regUser(Object.fromEntries(new FormData(e.target))));
-        navigate('/');
-      }}
-      >
-        <Grid align="center">
-          <Paper
-            elevation={6}
+    <form onSubmit={(e) => {
+      e.preventDefault();
+      dispatch(regUser(Object.fromEntries(new FormData(e.target))));
+      navigate('/');
+    }}
+    >
+      <Grid align="center">
+        <Paper
+          elevation={6}
+          style={{
+            width: '400px',
+            height: '300px',
+            marginTop: '40px',
+            borderRadius: '3%',
+          }}
+        >
+          <Stack
             style={{
-              width: '600px',
-              height: '400px',
-              marginTop: '40px',
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              width: '35%',
             }}
+            direction="row"
           >
-            <Stack
-              style={{
-                justifyContent: 'center',
-                flexWrap: 'wrap',
-                width: '35%',
+            <h2 style={{ fontFamily: 'Gill Sans, sans-serif', marginTop: '15px' }}>Регистрация</h2>
+            <div style={{ visibility: error.visible, color: '#ab003c' }}>
+              {error.message}
+            </div>
+            <TextField
+              name="name"
+              type="text"
+              id="standard-basic1"
+              label="Имя"
+              variant="standard"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
               }}
-              direction="row"
+            />
+            <TextField
+              name="email"
+              type="email"
+              id="standard-basic2"
+              label="Email"
+              variant="standard"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
+            />
+            <TextField
+              name="password"
+              type="password"
+              id="standard-basic3"
+              label="Пароль"
+              variant="standard"
+              sx={{
+                '& .MuiInputLabel-root': { color: 'green' },
+                '& .MuiOutlinedInput-root': {
+                  '& > fieldset': { borderColor: 'green' },
+                },
+              }}
+            />
+            <Button
+              type="submit"
+              variant="outlined"
+              style={{ marginTop: '20px' }}
+              color="success"
             >
-              <h2 style={{ fontFamily: 'Gill Sans, sans-serif' }}>Registration</h2>
-              <div style={{ visibility: error.visible, color: 'red' }}>
-                {error.message}
-              </div>
-              <TextField
-                name="name"
-                type="text"
-                id="standard-basic1"
-                label="Name"
-                variant="standard"
-              />
-              <TextField
-                name="email"
-                type="email"
-                id="standard-basic2"
-                label="Email"
-                variant="standard"
-              />
-              <TextField
-                name="password"
-                type="password"
-                id="standard-basic3"
-                label="Password"
-                variant="standard"
-              />
-              <Button
-                type="submit"
-                variant="outlined"
-                style={{ marginTop: '20px' }}
-              >
-                Reg
-              </Button>
-              {' '}
-            </Stack>
-          </Paper>
-        </Grid>
-      </form>
+              OK
+            </Button>
+            {' '}
+          </Stack>
+        </Paper>
+      </Grid>
+    </form>
   );
 }
 //     <form
