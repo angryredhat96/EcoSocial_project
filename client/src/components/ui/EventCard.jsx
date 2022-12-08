@@ -31,7 +31,7 @@ export default function EventCard({ event, elId }) {
 
   return (
     <Grid item md="4">
-      <Card sx={{ minWidth: 275, height: '180px' }}>
+      <Card sx={{ minWidth: 275, height: '280px' }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
             <IconButton
