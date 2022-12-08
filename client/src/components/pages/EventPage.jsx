@@ -18,7 +18,7 @@ import {
   Link, NavLink, useNavigate, useParams,
 } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { asyncEdit } from '../../redux/actions/eventActions';
+import { asyncEdit, getEvents } from '../../redux/actions/eventActions';
 import {
   getEventCounter, getProfileCounter, setCounter, submitCounter,
 } from '../../redux/actions/counterAction';
@@ -33,7 +33,8 @@ export default function EventPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allUser = useSelector((store) => store.users);
-  console.log(allUser, 'MUUUUUUUUU');
+  // console.log(allUser, 'MUUUUUUUUU');
+  console.log(event, 'event');
   // const [plus, setPlus] = React.useState(0);
 
   const linkStyle = {
@@ -45,6 +46,7 @@ export default function EventPage() {
 
   useEffect(() => {
     dispatch(getEventCounter(id));
+    dispatch(getEvents());
   }, [count]);
 
   return (
@@ -63,7 +65,7 @@ export default function EventPage() {
         className="container"
       >
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event.userId}`}>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom style={linkStyle} component={Link} to={`/profile/${event?.userId}`}>
             <IconButton
               sx={{ p: 0 }}
             >
@@ -75,16 +77,16 @@ export default function EventPage() {
             {userName}
           </Typography>
           <Typography gutterBottom variant="h4" style={{ color: '#689f38' }} component="div">
-            {event.title}
+            {event?.title}
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {event.description}
+            {event?.description}
           </Typography>
           <Typography gutterBottom variant="h7" component="div">
-            {dayjs(event.date).format('DD.MM.YY')}
+            {dayjs(event?.date).format('DD.MM.YY')}
           </Typography>
           <Box>
-            <a href={`${event.tgLink}`} target="_blank" label="text" rel="noreferrer"><TelegramIcon /></a>
+            <a href={`${event?.tgLink}`} target="_blank" label="text" rel="noreferrer"><TelegramIcon /></a>
           </Box>
           <Typography gutterBottom variant="h7" style={{ color: '#689f38' }} component="div">
             🖖

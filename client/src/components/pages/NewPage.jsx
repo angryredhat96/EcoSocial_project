@@ -66,7 +66,7 @@ export default function NewPage() {
               id="outlined-multiline-static"
               multiline
               rows={6}
-              defaultValue="Default Value"
+              // defaultValue="Default Value"
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Stack spacing={3}>
