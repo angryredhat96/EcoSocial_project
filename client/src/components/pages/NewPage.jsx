@@ -90,13 +90,25 @@ export default function NewPage() {
               }}
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <Stack spacing={3}>
+              <Stack color="success" spacing={3}>
                 <DesktopDatePicker
-                  label="Date desktop"
+                  label="Дата"
                   inputFormat="MM/DD/YYYY"
                   value={value}
                   onChange={handleChange}
-                  renderInput={(params) => <TextField {...params} />}
+                  color="success"
+                  renderInput={(params) => (
+                    <TextField
+                      color="success"
+                      sx={{
+                        '& .MuiInputLabel-root': { color: 'green' },
+                        '& .MuiOutlinedInput-root': {
+                          '& > fieldset': { borderColor: 'green' },
+                        },
+                      }}
+                      {...params}
+                    />
+                  )}
                 />
               </Stack>
             </LocalizationProvider>

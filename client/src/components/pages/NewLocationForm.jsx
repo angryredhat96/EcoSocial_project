@@ -61,6 +61,9 @@ export default function NewLocationForm() {
               label="Описание места"
               variant="outlined"
               color="success"
+              multiline
+              rows={6}
+              defaultValue="Default Value"
               sx={{
                 '& .MuiInputLabel-root': { color: 'green' },
                 '& .MuiOutlinedInput-root': {
